@@ -1,28 +1,19 @@
-export const Units = [
-  "kg",
-  "g",
-  "ml",
-  "l",
-  "oz",
-  "teaspoon",
-  "tablespoon",
-  "cup",
-] as const;
-
-type Unit = (typeof Units)[number];
-
-export type Ingredient = {
-  name: string;
-  quantity: number;
-  unit: Unit;
+export type WithKey = {
+  key: string;
 };
 
-export type PreparationMethod = {
+export type IngredientDoc = WithKey & {
+  name: string;
+  quantity: number;
+  unit: string;
+};
+
+export type PreparationMethodDoc = WithKey & {
   description: string;
   order: number;
 };
 
-export type Recipe = {
+export type RecipeDoc = WithKey & {
   description: string;
   imageUrl: string;
   tips: string;

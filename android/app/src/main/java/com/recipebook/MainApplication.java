@@ -1,4 +1,4 @@
-package com.recipebook;
+package co.myrecipesbook.app;
 
 import android.app.Application;
 import com.facebook.react.PackageList;
