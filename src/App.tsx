@@ -1,5 +1,5 @@
-import { AppNavigator } from "./navigators/AppNavigator";
+import { AppNavigator } from "@/navigators/AppNavigator";
 
-export default function App() {
+export const App = () => {
   return <AppNavigator />;
-}
+};

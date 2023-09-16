@@ -36,8 +36,8 @@ const firebaseClient = () => {
     collectionName: string,
     documentMapper: (doc: DocumentData) => T,
     callback: (
-      data: T[] //QuerySnapshot<DocumentData, DocumentData>
-    ) => void
+      data: T[], //QuerySnapshot<DocumentData, DocumentData>
+    ) => void,
   ) => {
     const queryCollection = query(collection(firestore, collectionName));
     const unsubscribe = onSnapshot(queryCollection, (snapshot) => {
@@ -51,7 +51,7 @@ const firebaseClient = () => {
 
   const fetchCollection = async <T>(
     collectionName: string,
-    documentMapper: (doc: DocumentData) => T
+    documentMapper: (doc: DocumentData) => T,
   ): Promise<T[]> => {
     try {
       const queryCollection = query(collection(firestore, collectionName));
@@ -70,7 +70,7 @@ const firebaseClient = () => {
   const updateDocument = async <T extends Record<string, unknown>>(
     collectionName: string,
     documentId: string,
-    data: T
+    data: T,
   ): Promise<void> => {
     try {
       const docRef = doc(firestore, collectionName, documentId);
