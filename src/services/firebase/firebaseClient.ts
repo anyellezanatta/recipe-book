@@ -1,5 +1,6 @@
 import { Config } from "@/config";
 import { FirebaseOptions, initializeApp } from "firebase/app";
+import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
 import {
   DocumentData,
   collection,
@@ -21,10 +22,15 @@ export const getFirebaseOptions = (): FirebaseOptions => ({
   measurementId: Config.MEASUREMENT_ID,
 });
 
-const apiClient = () => {
+const firebaseClient = () => {
+  console.log("whatever");
   const firebase = initializeApp(getFirebaseOptions());
 
   const firestore = getFirestore(firebase);
+  const auth = getAuth(firebase);
+  const provider = new GoogleAuthProvider();
+
+  const singInWithGoogle = () => signInWithPopup(auth, provider);
 
   const subscribeToCollection = <T>(
     collectionName: string,
@@ -61,7 +67,7 @@ const apiClient = () => {
     }
   };
 
-  const updateDocument = async <T>(
+  const updateDocument = async <T extends Record<string, unknown>>(
     collectionName: string,
     documentId: string,
     data: T
@@ -80,7 +86,8 @@ const apiClient = () => {
     subscribeToCollection,
     fetchCollection,
     updateDocument,
+    singInWithGoogle,
   };
 };
 
-export const ApiClient = apiClient();
+export const FirebaseClient = firebaseClient();

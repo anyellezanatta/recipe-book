@@ -36,3 +36,4 @@ yarn-error.*
 
 *.env
 *.env*.local
+%ProgramData%/Microsoft/Windows/UUS/State/_active.uusver
