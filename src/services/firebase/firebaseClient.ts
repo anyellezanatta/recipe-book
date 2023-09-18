@@ -1,7 +1,25 @@
-import firestore from "@react-native-firebase/firestore";
+import firestore, {
+  FirebaseFirestoreTypes,
+} from "@react-native-firebase/firestore";
 import { WithKey } from "./firebaseClient.types";
 
 const firebaseClient = () => {
+  const collectionMapper = <TModel, TDoc extends WithKey>(
+    collection: FirebaseFirestoreTypes.QuerySnapshot<FirebaseFirestoreTypes.DocumentData>,
+    documentMapper: (doc: TDoc) => TModel,
+  ): TModel[] => {
+    const data: TModel[] = [];
+    collection.forEach((documentSnapshot) =>
+      data.push(
+        documentMapper({
+          key: documentSnapshot.id,
+          ...documentSnapshot.data(),
+        } as TDoc),
+      ),
+    );
+    return data;
+  };
+
   const subscribeToCollection = <TModel, TDoc extends WithKey>(
     collectionName: string,
     documentMapper: (doc: TDoc) => TModel,
@@ -9,60 +27,79 @@ const firebaseClient = () => {
   ) => {
     const unsubscribe = firestore()
       .collection(collectionName)
+      //TODO: Add where
       .onSnapshot((querySnapshot) => {
-        const data: TModel[] = [];
-
-        querySnapshot.forEach((documentSnapshot) =>
-          data.push(
-            documentMapper({
-              key: documentSnapshot.id,
-              ...documentSnapshot.data(),
-            } as TDoc),
-          ),
-        );
+        const data = collectionMapper(querySnapshot, documentMapper);
         callback(data);
       });
 
     return unsubscribe;
   };
 
-  // const fetchCollection = async <T>(
-  //   collectionName: string,
-  //   documentMapper: (doc: DocumentData) => T,
-  // ): Promise<T[]> => {
-  //   try {
-  //     const queryCollection = query(collection(firestore, collectionName));
-  //     const docs = await getDocs(queryCollection);
-  //     const data: T[] = [];
-  //     docs.forEach((doc) => {
-  //       data.push(documentMapper(doc.data));
-  //     });
-  //     return data;
-  //   } catch (error) {
-  //     console.log("Error fetching collection: ", error);
-  //     throw error;
-  //   }
-  // };
+  const fetchCollection = async <TModel, TDoc extends WithKey>(
+    collectionName: string,
+    documentMapper: (doc: TDoc) => TModel,
+  ): Promise<TModel[]> => {
+    try {
+      //TODO: Add where
+      const collection = await firestore().collection(collectionName).get();
+      return collectionMapper(collection, documentMapper);
+    } catch (error) {
+      console.log("Error fetching collection: ", error);
+      throw error;
+    }
+  };
 
-  // const updateDocument = async <T extends Record<string, unknown>>(
-  //   collectionName: string,
-  //   documentId: string,
-  //   data: T,
-  // ): Promise<void> => {
-  //   try {
-  //     const docRef = doc(firestore, collectionName, documentId);
-  //     await updateDoc(docRef, data);
-  //     console.log(`Document updated with ID: ${documentId}`);
-  //   } catch (error) {
-  //     console.error("Error updating document: ", error);
-  //     throw error;
-  //   }
-  // };
+  const subscribeToDocument = async <TModel, TDoc extends WithKey>(
+    collectionName: string,
+    docId: string,
+    documentMapper: (doc: TDoc) => TModel,
+  ): Promise<TModel> => {
+    const documentSnapshot = await firestore()
+      .collection(collectionName)
+      .doc(docId)
+      .get();
+
+    if (!documentSnapshot.exists) return {} as TModel; //TODO change
+
+    return documentMapper({
+      key: documentSnapshot.id,
+      ...documentSnapshot.data(),
+    } as TDoc);
+  };
+
+  const addDocument = async <TModel, TDoc extends WithKey>(
+    collectionName: string,
+    documentMapper: (model: TModel) => TDoc,
+    data: TModel,
+  ) => {
+    await firestore().collection(collectionName).add(documentMapper(data));
+  };
+
+  const updateDocument = async <TModel, TDoc extends WithKey>(
+    collectionName: string,
+    documentId: string,
+    documentMapper: (model: TModel) => TDoc,
+    data: TModel,
+  ) => {
+    await firestore()
+      .collection(collectionName)
+      .doc(documentId)
+      .update(documentMapper(data));
+  };
+
+  const removeDocument = async (collectionName: string, documentId: string) => {
+    //TODO: Remove Subcolletion
+    await firestore().collection(collectionName).doc(documentId).delete();
+  };
 
   return {
     subscribeToCollection,
-    // fetchCollection,
-    // updateDocument,
+    fetchCollection,
+    subscribeToDocument,
+    addDocument,
+    updateDocument,
+    removeDocument,
   };
 };
 
