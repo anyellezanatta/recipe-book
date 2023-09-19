@@ -8,16 +8,12 @@ const firebaseClient = () => {
     collection: FirebaseFirestoreTypes.QuerySnapshot<FirebaseFirestoreTypes.DocumentData>,
     documentMapper: (doc: TDoc) => TModel,
   ): TModel[] => {
-    const data: TModel[] = [];
-    collection.forEach((documentSnapshot) =>
-      data.push(
-        documentMapper({
-          key: documentSnapshot.id,
-          ...documentSnapshot.data(),
-        } as TDoc),
-      ),
+    return collection.docs.map((doc) =>
+      documentMapper({
+        key: doc.id,
+        ...doc.data(),
+      } as TDoc),
     );
-    return data;
   };
 
   const subscribeToCollection = <TModel, TDoc extends WithKey>(
@@ -52,12 +48,12 @@ const firebaseClient = () => {
 
   const subscribeToDocument = async <TModel, TDoc extends WithKey>(
     collectionName: string,
-    docId: string,
+    documentId: string,
     documentMapper: (doc: TDoc) => TModel,
   ): Promise<TModel> => {
     const documentSnapshot = await firestore()
       .collection(collectionName)
-      .doc(docId)
+      .doc(documentId)
       .get();
 
     if (!documentSnapshot.exists) return {} as TModel; //TODO change
