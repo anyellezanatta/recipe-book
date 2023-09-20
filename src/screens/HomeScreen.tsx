@@ -1,26 +1,33 @@
-import { Recipe } from "@/models";
-import { FirebaseClient } from "@/services/firebase/firebaseClient";
-import { RecipeDoc } from "@/services/firebase/firebaseClient.types";
-import { useEffect, useState } from "react";
 import { FlatList, StyleSheet, Text, View } from "react-native";
+import { useReactQuerySubscription } from "@/hooks/useReactQuerySubscription";
+import { Recipe } from "@/models";
+import { RecipeDoc } from "@/services/firebase/firebaseClient.types";
 
 export const HomeScreen = () => {
-  const [recipes, setRecipes] = useState<Recipe[]>([]);
+  const { data, isLoading } = useReactQuerySubscription<Recipe, RecipeDoc>(
+    "recipes",
+    (doc) => ({
+      ...doc,
+    }),
+  );
 
-  useEffect(() => {
-    return FirebaseClient.subscribeToCollection<Recipe, RecipeDoc>(
-      "recipes",
-      (doc) => {
-        return { ...doc };
-      },
-      (data) => setRecipes(data),
+  if (isLoading) {
+    return (
+      <View
+        style={{
+          flex: 1,
+          justifyContent: "center",
+          alignItems: "center",
+        }}>
+        <Text>Loading...</Text>
+      </View>
     );
-  }, []);
+  }
 
   return (
     <View style={styles.container}>
       <FlatList
-        data={recipes}
+        data={data}
         renderItem={({ item }) => <Text>{item.title}</Text>}
       />
     </View>

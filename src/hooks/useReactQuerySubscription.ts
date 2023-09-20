@@ -13,9 +13,15 @@ export const useReactQuerySubscription = <TModel, TDoc extends WithKey>(
     return FirebaseClient.subscribeToCollection<TModel, TDoc>(
       collectionName,
       documentMapper,
-      (data: TModel[]) => queryClient.setQueriesData([collectionName], data),
+      (data: TModel[]) => {
+        queryClient.setQueriesData([collectionName], data);
+        queryClient.invalidateQueries({ queryKey: [collectionName] });
+      },
     );
   }, [collectionName, documentMapper, queryClient]);
 
-  return useQuery<TModel>([collectionName]);
+  return useQuery<TModel[]>(
+    [collectionName],
+    () => new Promise<TModel[]>(() => {}),
+  );
 };
