@@ -22,10 +22,13 @@ const firebaseClient = () => {
     callback: (data: TModel[]) => void,
   ) => {
     const unsubscribe = firestore()
-      .collection(collectionName)
+      .collectionGroup(collectionName)
+      //.collection(collectionName)
+
       //TODO: Add where
       .onSnapshot((querySnapshot) => {
         const data = collectionMapper(querySnapshot, documentMapper);
+        console.log(data);
         callback(data);
       });
 

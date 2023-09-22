@@ -32,4 +32,5 @@ export type Recipe = {
   title: string;
   yields: string;
   favorite: boolean;
+  userId: string;
 };
