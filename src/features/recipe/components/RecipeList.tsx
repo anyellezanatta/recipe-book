@@ -5,6 +5,8 @@ import { useReactQuerySubscription } from "@/hooks/useReactQuerySubscription";
 import { LoadingScreen } from "@/screens/LoadingScreen";
 import { RecipeDoc } from "@/services/firebase/firebaseClient.types";
 import { RecipeCell } from "./RecipeCell";
+import { spacing } from "@/theme/spacing";
+import { Separator } from "@/components/Separator";
 
 export const RecipeList: FC<ViewProps> = () => {
   const { data, isLoading } = useReactQuerySubscription<Recipe, RecipeDoc>(
@@ -30,5 +32,12 @@ export const RecipeList: FC<ViewProps> = () => {
     return <RecipeCell item={item} />;
   };
 
-  return <FlatList data={data} renderItem={renderItem} />;
+  return (
+    <FlatList
+      data={data}
+      renderItem={renderItem}
+      contentContainerStyle={{ padding: spacing.medium }}
+      ItemSeparatorComponent={Separator}
+    />
+  );
 };

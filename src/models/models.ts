@@ -7,6 +7,7 @@ export const Units = [
   "teaspoon",
   "tablespoon",
   "cup",
+  "unit",
 ] as const;
 
 export type Unit = (typeof Units)[number];

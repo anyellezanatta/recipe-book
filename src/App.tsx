@@ -1,5 +1,9 @@
 import { AppNavigator } from "@/navigators/AppNavigator";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import {
+  SafeAreaProvider,
+  initialWindowMetrics,
+} from "react-native-safe-area-context";
 
 // Create a client
 const queryClient = new QueryClient({
@@ -12,8 +16,10 @@ const queryClient = new QueryClient({
 
 export const App = () => {
   return (
-    <QueryClientProvider client={queryClient}>
-      <AppNavigator />
-    </QueryClientProvider>
+    <SafeAreaProvider initialMetrics={initialWindowMetrics}>
+      <QueryClientProvider client={queryClient}>
+        <AppNavigator />
+      </QueryClientProvider>
+    </SafeAreaProvider>
   );
 };

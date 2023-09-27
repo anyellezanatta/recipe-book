@@ -1,22 +1,26 @@
 import { FC } from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
 import { Recipe } from "@/models";
+import { spacing } from "@/theme/spacing";
 
 export const RecipeCell: FC<{ item: Recipe }> = ({ item }) => {
   return (
     <View style={styles.container}>
-      <Image
-        source={{ uri: item.imageUrl }}
-        style={{ aspectRatio: 1, flex: 1 }}
-      />
-      <Text>{item.title}</Text>
+      <Image style={styles.image} source={{ uri: item.imageUrl }} />
+      <Text style={styles.text}>{item.title}</Text>
     </View>
   );
 };
 const styles = StyleSheet.create({
   container: {
-    minHeight: 180,
-    padding: 1.5, //spacing.medium,
-    columnGap: 1.5, //spacing.medium,
+    gap: spacing.medium,
+  },
+  text: {
+    fontSize: 16,
+  },
+  image: {
+    width: "100%",
+    height: 180,
+    borderRadius: spacing.medium,
   },
 });
