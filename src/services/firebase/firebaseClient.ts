@@ -28,7 +28,7 @@ const firebaseClient = () => {
       //TODO: Add where
       .onSnapshot((querySnapshot) => {
         const data = collectionMapper(querySnapshot, documentMapper);
-        console.log(data);
+
         callback(data);
       });
 

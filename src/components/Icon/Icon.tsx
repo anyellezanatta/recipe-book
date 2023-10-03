@@ -3,7 +3,7 @@ import RNVIcon from "react-native-vector-icons/Ionicons";
 import Ionicons from "react-native-vector-icons/dist/glyphmaps/Ionicons.json";
 
 export type IconName = keyof typeof Ionicons;
-type IconSize = keyof typeof $sizePresets | number;
+export type IconSize = keyof typeof $sizePresets | number;
 
 export type IconProps = Omit<RNVIconProps, "name" | "size"> & {
   name: IconName;

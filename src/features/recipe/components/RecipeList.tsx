@@ -12,7 +12,6 @@ export const RecipeList: FC<ViewProps> = () => {
   const { data, isLoading } = useReactQuerySubscription<Recipe, RecipeDoc>(
     "recipes",
     (recipeDoc) => {
-      console.log(recipeDoc);
       return {
         key: recipeDoc.key,
         description: recipeDoc.description,
