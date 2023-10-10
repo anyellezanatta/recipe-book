@@ -18,7 +18,7 @@ export type RecipeDoc = WithKey & {
   image_url: string;
   tips: string;
   title: string;
-  yields: string;
+  yields: number;
   user_id: string;
   favorite: boolean;
 };

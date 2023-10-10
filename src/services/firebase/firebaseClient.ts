@@ -58,13 +58,16 @@ const firebaseClient = () => {
       .collection(collectionName)
       .doc(documentId)
       .get();
+    console.log(documentSnapshot);
 
-    if (!documentSnapshot.exists) return {} as TModel; //TODO change
+    if (documentSnapshot.exists) {
+      return documentMapper({
+        key: documentSnapshot.id,
+        ...documentSnapshot.data(),
+      } as TDoc);
+    }
 
-    return documentMapper({
-      key: documentSnapshot.id,
-      ...documentSnapshot.data(),
-    } as TDoc);
+    return new Promise<TModel>(() => {});
   };
 
   const addDocument = async <TModel, TDoc extends WithKey>(

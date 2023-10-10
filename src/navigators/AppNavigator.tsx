@@ -2,13 +2,28 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { HomeScreen } from "@/screens/HomeScreen";
 import { useAppTheme } from "@/hooks/useAppTheme";
+import { DetailsScreen } from "@/screens/DetailsScreen";
 
-const Stack = createNativeStackNavigator();
+export type AppStackParamList = {
+  Home: undefined;
+  DetailsScreen: {
+    id: string;
+  };
+};
+
+const Stack = createNativeStackNavigator<AppStackParamList>();
 
 const AppStack = () => {
+  const { colors } = useAppTheme();
+
   return (
-    <Stack.Navigator>
+    <Stack.Navigator
+      screenOptions={{
+        headerShadowVisible: false,
+        headerStyle: { backgroundColor: colors.background },
+      }}>
       <Stack.Screen name="Home" component={HomeScreen} />
+      <Stack.Screen name="DetailsScreen" component={DetailsScreen} />
     </Stack.Navigator>
   );
 };

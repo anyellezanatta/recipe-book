@@ -1,14 +1,17 @@
 import { FC } from "react";
-import { Recipe } from "@/models";
 import { FlatList, ListRenderItemInfo, ViewProps } from "react-native";
+import { Recipe } from "@/models";
 import { useReactQuerySubscription } from "@/hooks/useReactQuerySubscription";
-import { LoadingScreen } from "@/screens/LoadingScreen";
+import { LoadingScreen } from "@/components/FullScreenLoader/LoadingScreen";
 import { RecipeDoc } from "@/services/firebase/firebaseClient.types";
 import { RecipeCell } from "./RecipeCell";
 import { spacing } from "@/theme/spacing";
 import { Separator } from "@/components/Separator";
+import { useNavigation } from "@react-navigation/native";
 
 export const RecipeList: FC<ViewProps> = () => {
+  const navigation = useNavigation();
+
   const { data, isLoading } = useReactQuerySubscription<Recipe, RecipeDoc>(
     "recipes",
     (recipeDoc) => {
@@ -28,7 +31,12 @@ export const RecipeList: FC<ViewProps> = () => {
   if (isLoading) <LoadingScreen />;
 
   const renderItem = ({ item }: ListRenderItemInfo<Recipe>) => {
-    return <RecipeCell item={item} />;
+    return (
+      <RecipeCell
+        item={item}
+        onPress={() => navigation.navigate("DetailsScreen", { id: item.key })}
+      />
+    );
   };
 
   return (

@@ -31,7 +31,7 @@ export type Recipe = {
   imageUrl: string;
   tips: string;
   title: string;
-  yields: string;
+  yields: number;
   favorite: boolean;
   userId: string;
 };
