@@ -6,17 +6,15 @@ import { useAppTheme } from "@/hooks/useAppTheme";
 import { spacing } from "@/theme/spacing";
 
 export type InfoCardProps = Omit<IconProps, "name"> & {
-  icon: IconProps["name"];
-  text: TextProps["text"];
-  textSize?: TextProps["size"];
+  content: IconProps["name"] | number;
+  title: TextProps["text"];
 };
 
 export const InfoCard: FC<InfoCardProps> = ({
   style: $styleOverride,
-  icon,
-  text,
+  content,
+  title,
   size,
-  textSize = "xs",
   ...props
 }) => {
   const { colors } = useAppTheme();
@@ -28,8 +26,12 @@ export const InfoCard: FC<InfoCardProps> = ({
 
   return (
     <View {...props} style={$styles}>
-      <Icon name={icon} size={size} />
-      <Text size={textSize}>{text}</Text>
+      {typeof content === "number" ? (
+        <Text text={`${content}`} size="md" />
+      ) : (
+        <Icon name={content} size={size} style={{ color: colors.text }} />
+      )}
+      <Text size="xs" text={title} style={{ color: colors.cardTitle }} />
     </View>
   );
 };

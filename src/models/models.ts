@@ -12,17 +12,13 @@ export const Units = [
 
 export type Unit = (typeof Units)[number];
 
+export type DifficultyType = "easy" | "medium" | "hard";
+
 export type Ingredient = {
   key: string;
   name: string;
   quantity: number;
   unit: Unit;
-};
-
-export type PreparationMethod = {
-  key: string;
-  description: string;
-  order: number;
 };
 
 export type Recipe = {
@@ -34,4 +30,8 @@ export type Recipe = {
   yields: number;
   favorite: boolean;
   userId: string;
+  preparationTime: number;
+  difficulty: DifficultyType;
+  ingredients: Ingredient[];
+  preparationMethods: string[];
 };

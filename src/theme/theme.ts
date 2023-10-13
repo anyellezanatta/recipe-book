@@ -5,10 +5,11 @@ export const theme: Record<AppThemeName, AppTheme> = {
     ...DefaultTheme,
     colors: {
       ...DefaultTheme.colors,
-      text: "#52504f",
+      text: "#040303",
       background: "#ffffff",
       inputBackground: "#f0f0f0",
-      cardBackground: "red",
+      cardBackground: "#f0f0f0",
+      cardTitle: "#908d8c",
     },
   },
 
@@ -17,7 +18,8 @@ export const theme: Record<AppThemeName, AppTheme> = {
     colors: {
       ...DarkTheme.colors,
       inputBackground: "#4d4d4d",
-      cardBackground: "red",
+      cardBackground: "#f0f0f0",
+      cardTitle: "#908d8c",
     },
   },
 };
@@ -26,6 +28,7 @@ export type AppTheme = Theme & {
   colors: Theme["colors"] & {
     inputBackground: string;
     cardBackground: string;
+    cardTitle: string;
   };
 };
 

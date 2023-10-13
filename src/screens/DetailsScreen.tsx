@@ -1,5 +1,4 @@
-import { Image, ScrollView, StyleSheet } from "react-native";
-import { Text } from "@/components/Text";
+import { ScrollView, StyleSheet } from "react-native";
 import { useSubscribeToDocument } from "@/hooks/useSubscribeToDocument";
 import { Recipe } from "@/models";
 import { AppStackParamList } from "@/navigators/AppNavigator";
@@ -9,20 +8,10 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { LoadingScreen } from "../components/FullScreenLoader/LoadingScreen";
 import { RecipeProvider } from "@/features/recipe/contexts/RecipeProvider";
-import { RecipeInfoCardList } from "@/features/recipe/components/RecipeInfoCardList";
-
-const recipeDocMapper = (recipeDoc: RecipeDoc): Recipe => {
-  return {
-    key: recipeDoc.key,
-    description: recipeDoc.description,
-    favorite: recipeDoc.favorite,
-    imageUrl: recipeDoc.image_url,
-    tips: recipeDoc.tips,
-    title: recipeDoc.title,
-    yields: recipeDoc.yields,
-    userId: recipeDoc.user_id,
-  };
-};
+import { recipeDocMapper } from "@/features/recipe/mappers/recipeDocMapper";
+import { RecipeHeader } from "@/features/recipe/components/RecipeHeader";
+import { RecipeIngredients } from "@/features/recipe/components/RecipeIngredients";
+import { RecipePreparationMethods } from "@/features/recipe/components/RecipePreparationMethods";
 
 export const DetailsScreen = ({
   route,
@@ -43,10 +32,9 @@ export const DetailsScreen = ({
     <RecipeProvider recipe={data}>
       <ScrollView
         style={[styles.container, { paddingTop: insets.top + spacing.medium }]}>
-        <Image style={styles.image} source={{ uri: data?.imageUrl }} />
-        <Text size="md">{data?.title}</Text>
-        <RecipeInfoCardList />
-        <Text size="sm">{data?.description}</Text>
+        <RecipeHeader />
+        <RecipeIngredients />
+        <RecipePreparationMethods />
       </ScrollView>
     </RecipeProvider>
   );
@@ -55,10 +43,5 @@ export const DetailsScreen = ({
 const styles = StyleSheet.create({
   container: {
     paddingHorizontal: spacing.medium,
-  },
-  image: {
-    width: "100%",
-    height: 180,
-    borderRadius: spacing.medium,
   },
 });

@@ -8,24 +8,14 @@ import { RecipeCell } from "./RecipeCell";
 import { spacing } from "@/theme/spacing";
 import { Separator } from "@/components/Separator";
 import { useNavigation } from "@react-navigation/native";
+import { recipeDocMapper } from "../mappers/recipeDocMapper";
 
 export const RecipeList: FC<ViewProps> = () => {
   const navigation = useNavigation();
 
   const { data, isLoading } = useReactQuerySubscription<Recipe, RecipeDoc>(
     "recipes",
-    (recipeDoc) => {
-      return {
-        key: recipeDoc.key,
-        description: recipeDoc.description,
-        favorite: recipeDoc.favorite,
-        imageUrl: recipeDoc.image_url,
-        tips: recipeDoc.tips,
-        title: recipeDoc.title,
-        yields: recipeDoc.yields,
-        userId: recipeDoc.user_id,
-      };
-    },
+    recipeDocMapper,
   );
 
   if (isLoading) <LoadingScreen />;

@@ -8,13 +8,13 @@ type RecipeInfoCardProps = ViewProps & { info: RecipeInfo };
 export const RecipeInfoCard: FC<RecipeInfoCardProps> = ({ info, ...props }) => {
   switch (info.type) {
     case "yields":
-      return (
-        <InfoCard icon="american-football-outline" text="Servings" {...props} />
-      );
-    case "preparation":
-      return <InfoCard icon="time-outline" text="Time" {...props} />;
+      return <InfoCard content={info.amount} title="Servings" {...props} />;
+    case "time":
+      return <InfoCard content="time-outline" title="Time" {...props} />;
     case "difficulty":
-      return <InfoCard icon="at-outline" text="Difficulty" {...props} />;
+      return (
+        <InfoCard content="speedometer-outline" title="Difficulty" {...props} />
+      );
     default:
       return null;
   }

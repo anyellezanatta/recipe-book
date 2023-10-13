@@ -17,14 +17,13 @@ export const RecipeInfoCardList: FC<RecipeInfoCardListProps> = ({
   ...props
 }) => {
   const { recipe } = useRecipe();
-  console.log(recipe);
 
   if (!recipe) return null;
 
   const items: RecipeInfo[] = [
     { type: "yields", amount: recipe.yields },
-    { type: "preparation", duration: 60 },
-    { type: "difficulty", dificulty: "easy" },
+    { type: "time", duration: recipe.preparationTime },
+    { type: "difficulty", difficulty: recipe.difficulty },
   ];
 
   const $styles: StyleProp<ViewStyle> = [styles.container, $styleOverride];
@@ -32,7 +31,7 @@ export const RecipeInfoCardList: FC<RecipeInfoCardListProps> = ({
   return (
     <View {...props} style={$styles}>
       {items.map((item) => {
-        return <RecipeInfoCard info={item} />;
+        return <RecipeInfoCard key={item.type} info={item} />;
       })}
     </View>
   );

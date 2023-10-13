@@ -1,16 +1,18 @@
+import { DifficultyType } from "@/models";
+
 export type RecipeYields = {
   type: "yields";
   amount: number;
 };
 
 export type RecipePreparationTime = {
-  type: "preparation";
+  type: "time";
   duration: number;
 };
 
 export type RecipeDifficulty = {
   type: "difficulty";
-  dificulty: "easy" | "medium" | "hard";
+  difficulty: DifficultyType;
 };
 
 export type RecipeInfo =

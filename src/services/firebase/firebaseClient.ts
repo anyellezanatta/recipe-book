@@ -58,7 +58,6 @@ const firebaseClient = () => {
       .collection(collectionName)
       .doc(documentId)
       .get();
-    console.log(documentSnapshot);
 
     if (documentSnapshot.exists) {
       return documentMapper({
