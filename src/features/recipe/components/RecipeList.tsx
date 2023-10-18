@@ -1,35 +1,34 @@
 import { FC } from "react";
-import { Recipe } from "@/models";
 import { FlatList, ListRenderItemInfo, ViewProps } from "react-native";
-import { useReactQuerySubscription } from "@/hooks/useReactQuerySubscription";
-import { LoadingScreen } from "@/screens/LoadingScreen";
+import { Recipe } from "@/models";
+import { useSubscribeToCollection } from "@/hooks/useSubscribeToCollection";
+import { FullScreenLoader } from "@/components/FullScreenLoader/FullScreenLoader";
 import { RecipeDoc } from "@/services/firebase/firebaseClient.types";
 import { RecipeCell } from "./RecipeCell";
 import { spacing } from "@/theme/spacing";
 import { Separator } from "@/components/Separator";
+import { useNavigation } from "@react-navigation/native";
+import { recipeDocMapper } from "../mappers/recipeDocMapper";
 
 export const RecipeList: FC<ViewProps> = () => {
-  const { data, isLoading } = useReactQuerySubscription<Recipe, RecipeDoc>(
+  const navigation = useNavigation();
+
+  const { data, isLoading } = useSubscribeToCollection<Recipe, RecipeDoc>(
     "recipes",
-    (recipeDoc) => {
-      console.log(recipeDoc);
-      return {
-        key: recipeDoc.key,
-        description: recipeDoc.description,
-        favorite: recipeDoc.favorite,
-        imageUrl: recipeDoc.image_url,
-        tips: recipeDoc.tips,
-        title: recipeDoc.title,
-        yields: recipeDoc.yields,
-        userId: recipeDoc.user_id,
-      };
-    },
+    recipeDocMapper,
   );
 
-  if (isLoading) <LoadingScreen />;
+  if (isLoading) {
+    return <FullScreenLoader />;
+  }
 
   const renderItem = ({ item }: ListRenderItemInfo<Recipe>) => {
-    return <RecipeCell item={item} />;
+    return (
+      <RecipeCell
+        item={item}
+        onPress={() => navigation.navigate("DetailsScreen", { id: item.key })}
+      />
+    );
   };
 
   return (

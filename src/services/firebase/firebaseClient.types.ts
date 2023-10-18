@@ -8,17 +8,16 @@ export type IngredientDoc = WithKey & {
   unit: string;
 };
 
-export type PreparationMethodDoc = WithKey & {
-  description: string;
-  order: number;
-};
-
 export type RecipeDoc = WithKey & {
   description: string;
-  image_url: string;
+  imageUrl: string;
   tips: string;
   title: string;
-  yields: string;
-  user_id: string;
+  yields: number;
+  userId: string;
   favorite: boolean;
+  preparationTime: number;
+  difficulty: string;
+  ingredients: IngredientDoc[];
+  preparationMethods: string[];
 };

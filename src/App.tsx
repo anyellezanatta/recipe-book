@@ -4,6 +4,7 @@ import {
   SafeAreaProvider,
   initialWindowMetrics,
 } from "react-native-safe-area-context";
+import { ThemeProvider } from "./contexts/theme/ThemeProvider";
 
 // Create a client
 const queryClient = new QueryClient({
@@ -16,10 +17,12 @@ const queryClient = new QueryClient({
 
 export const App = () => {
   return (
-    <SafeAreaProvider initialMetrics={initialWindowMetrics}>
-      <QueryClientProvider client={queryClient}>
-        <AppNavigator />
-      </QueryClientProvider>
-    </SafeAreaProvider>
+    <ThemeProvider>
+      <SafeAreaProvider initialMetrics={initialWindowMetrics}>
+        <QueryClientProvider client={queryClient}>
+          <AppNavigator />
+        </QueryClientProvider>
+      </SafeAreaProvider>
+    </ThemeProvider>
   );
 };
