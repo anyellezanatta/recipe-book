@@ -53,7 +53,7 @@ const firebaseClient = () => {
     collectionName: string,
     documentId: string,
     documentMapper: (doc: TDoc) => TModel,
-  ): Promise<TModel> => {
+  ): Promise<TModel | void> => {
     const documentSnapshot = await firestore()
       .collection(collectionName)
       .doc(documentId)
@@ -66,7 +66,7 @@ const firebaseClient = () => {
       } as TDoc);
     }
 
-    return new Promise<TModel>(() => {});
+    return Promise.resolve();
   };
 
   const addDocument = async <TModel, TDoc extends WithKey>(
@@ -77,16 +77,12 @@ const firebaseClient = () => {
     await firestore().collection(collectionName).add(documentMapper(data));
   };
 
-  const updateDocument = async <TModel, TDoc extends WithKey>(
+  const updateDocument = async (
     collectionName: string,
     documentId: string,
-    documentMapper: (model: TModel) => TDoc,
-    data: TModel,
+    data: object,
   ) => {
-    await firestore()
-      .collection(collectionName)
-      .doc(documentId)
-      .update(documentMapper(data));
+    await firestore().collection(collectionName).doc(documentId).update(data);
   };
 
   const removeDocument = async (collectionName: string, documentId: string) => {

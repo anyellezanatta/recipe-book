@@ -9,5 +9,5 @@ export const useAppTheme = () => {
     throw new Error("This hook must be used within the ThemeContext");
   }
 
-  return { ...theme[context] };
+  return theme[context];
 };

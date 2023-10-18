@@ -17,12 +17,6 @@ export const ToggleIconButton: FC<ToggleIconButtonProps> = ({
   onToggleChanged,
   ...props
 }) => {
-  //   const $containerStyle: StyleProp<ViewStyle> = [
-  //     { justifyContent: "center", alignItems: "center" },
-  //     { backgroundColor: toggled ? colors.primary : colors.border },
-  //     style,
-  //   ];
-
   return (
     <Pressable
       onPress={() => onToggleChanged?.(!toggled)}

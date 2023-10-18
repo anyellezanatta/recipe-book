@@ -1,8 +1,8 @@
 import { FC } from "react";
 import { FlatList, ListRenderItemInfo, ViewProps } from "react-native";
 import { Recipe } from "@/models";
-import { useReactQuerySubscription } from "@/hooks/useReactQuerySubscription";
-import { LoadingScreen } from "@/components/FullScreenLoader/LoadingScreen";
+import { useSubscribeToCollection } from "@/hooks/useSubscribeToCollection";
+import { FullScreenLoader } from "@/components/FullScreenLoader/FullScreenLoader";
 import { RecipeDoc } from "@/services/firebase/firebaseClient.types";
 import { RecipeCell } from "./RecipeCell";
 import { spacing } from "@/theme/spacing";
@@ -13,12 +13,14 @@ import { recipeDocMapper } from "../mappers/recipeDocMapper";
 export const RecipeList: FC<ViewProps> = () => {
   const navigation = useNavigation();
 
-  const { data, isLoading } = useReactQuerySubscription<Recipe, RecipeDoc>(
+  const { data, isLoading } = useSubscribeToCollection<Recipe, RecipeDoc>(
     "recipes",
     recipeDocMapper,
   );
 
-  if (isLoading) <LoadingScreen />;
+  if (isLoading) {
+    return <FullScreenLoader />;
+  }
 
   const renderItem = ({ item }: ListRenderItemInfo<Recipe>) => {
     return (

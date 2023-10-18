@@ -1,6 +1,6 @@
 import { Text, View } from "react-native";
 //TODO change
-export const LoadingScreen = () => {
+export const FullScreenLoader = () => {
   return (
     <View
       style={{

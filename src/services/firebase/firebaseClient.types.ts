@@ -10,14 +10,14 @@ export type IngredientDoc = WithKey & {
 
 export type RecipeDoc = WithKey & {
   description: string;
-  image_url: string;
+  imageUrl: string;
   tips: string;
   title: string;
   yields: number;
-  user_id: string;
+  userId: string;
   favorite: boolean;
-  preparation_time: number;
+  preparationTime: number;
   difficulty: string;
   ingredients: IngredientDoc[];
-  preparation_method: string[];
+  preparationMethods: string[];
 };

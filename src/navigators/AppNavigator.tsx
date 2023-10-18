@@ -5,7 +5,7 @@ import { useAppTheme } from "@/hooks/useAppTheme";
 import { DetailsScreen } from "@/screens/DetailsScreen";
 
 export type AppStackParamList = {
-  Home: undefined;
+  Recipes: undefined;
   DetailsScreen: {
     id: string;
   };
@@ -22,7 +22,7 @@ const AppStack = () => {
         headerShadowVisible: false,
         headerStyle: { backgroundColor: colors.background },
       }}>
-      <Stack.Screen name="Home" component={HomeScreen} />
+      <Stack.Screen name="Recipes" component={HomeScreen} />
       <Stack.Screen name="DetailsScreen" component={DetailsScreen} />
     </Stack.Navigator>
   );

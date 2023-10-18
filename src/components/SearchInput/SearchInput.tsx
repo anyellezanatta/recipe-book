@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import { Icon } from "../Icon";
 import { spacing } from "@/theme/spacing";
+import { useAppTheme } from "@/hooks/useAppTheme";
 
 export type SearchInputProps = TextInputProps & {
   style?: StyleProp<ViewStyle>;
@@ -21,21 +22,20 @@ export const SearchInput = ({
   inputStyle,
   ...props
 }: SearchInputProps) => {
-  const placeholder = inputPlaceholder; // ?? t("search");
+  const { colors } = useAppTheme();
+
+  const placeholder = inputPlaceholder;
   return (
-    <View style={style}>
+    <View style={[styles.container, style]}>
       <TextInput
         underlineColorAndroid="transparent"
-        //placeholderTextColor={colors.textDim}
+        placeholderTextColor={colors.text}
         {...props}
         placeholder={placeholder}
-        style={[
-          styles.input,
-          inputStyle, //{ color: colors.text }
-        ]}
+        style={[styles.input, inputStyle]}
       />
       <Icon
-        //style={{ color: colors.textDim }}
+        style={{ color: colors.text }}
         name="search"
         size={spacing.extraLarge}
       />
