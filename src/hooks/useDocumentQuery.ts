@@ -4,7 +4,7 @@ import { WithKey } from "@/services/firebase/firebaseClient.types";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useEffect } from "react";
 
-export const useSubscribeToDocument = <TModel, TDoc extends WithKey>(
+export const useDocumentQuery = <TModel, TDoc extends WithKey>(
   collectionName: string,
   documentId: string,
   documentMapper: (doc: TDoc) => TModel,
@@ -13,7 +13,7 @@ export const useSubscribeToDocument = <TModel, TDoc extends WithKey>(
 
   useEffect(() => {
     const fetchDoc = async () => {
-      const data = await FirebaseClient.subscribeToDocument<TModel, TDoc>(
+      const data = await FirebaseClient.fetchDocument<TModel, TDoc>(
         collectionName,
         documentId,
         documentMapper,
