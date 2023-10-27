@@ -15,7 +15,6 @@ export type Unit = (typeof Units)[number];
 export type DifficultyType = "easy" | "medium" | "hard";
 
 export type Ingredient = {
-  key: string;
   name: string;
   quantity: number;
   unit: Unit;

@@ -49,7 +49,7 @@ const firebaseClient = () => {
     }
   };
 
-  const subscribeToDocument = async <TModel, TDoc extends WithKey>(
+  const fetchDocument = async <TModel, TDoc extends WithKey>(
     collectionName: string,
     documentId: string,
     documentMapper: (doc: TDoc) => TModel,
@@ -93,7 +93,7 @@ const firebaseClient = () => {
   return {
     subscribeToCollection,
     fetchCollection,
-    subscribeToDocument,
+    fetchDocument,
     addDocument,
     updateDocument,
     removeDocument,

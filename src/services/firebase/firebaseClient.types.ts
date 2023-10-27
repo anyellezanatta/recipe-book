@@ -2,7 +2,7 @@ export type WithKey = {
   key: string;
 };
 
-export type IngredientDoc = WithKey & {
+export type IngredientDoc = {
   name: string;
   quantity: number;
   unit: string;

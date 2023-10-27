@@ -2,7 +2,7 @@ import { StyleSheet, View } from "react-native";
 import { RecipeList } from "@/features/recipe/components/RecipeList";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-export const HomeScreen = () => {
+export const RecipeScreen = () => {
   const insets = useSafeAreaInsets();
 
   return (

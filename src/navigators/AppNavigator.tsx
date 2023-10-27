@@ -1,6 +1,6 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { HomeScreen } from "@/screens/HomeScreen";
+import { RecipeScreen } from "@/screens/RecipeScreen";
 import { useAppTheme } from "@/hooks/useAppTheme";
 import { DetailsScreen } from "@/screens/DetailsScreen";
 
@@ -22,8 +22,12 @@ const AppStack = () => {
         headerShadowVisible: false,
         headerStyle: { backgroundColor: colors.background },
       }}>
-      <Stack.Screen name="Recipes" component={HomeScreen} />
-      <Stack.Screen name="DetailsScreen" component={DetailsScreen} />
+      <Stack.Screen name="Recipes" component={RecipeScreen} />
+      <Stack.Screen
+        name="DetailsScreen"
+        component={DetailsScreen}
+        options={{ headerTitle: "" }}
+      />
     </Stack.Navigator>
   );
 };

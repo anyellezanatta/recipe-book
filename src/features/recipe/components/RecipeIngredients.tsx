@@ -17,6 +17,7 @@ export const RecipeIngredients: FC<RecipeIngredientsProps> = () => {
       {recipe.ingredients.map((ingredient) => {
         return (
           <RecipeIngredient
+            key={ingredient.name + ingredient.quantity}
             name={ingredient.name}
             quantity={ingredient.quantity}
             unit={ingredient.unit}
