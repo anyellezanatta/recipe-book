@@ -77,3 +77,4 @@ yarn-error.log
 **/GoogleService-Info.plist
 **/google-services.json
 **/IDEWorkspaceChecks.plist
+.env

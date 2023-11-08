@@ -1,6 +1,7 @@
 import firestore, {
   FirebaseFirestoreTypes,
 } from "@react-native-firebase/firestore";
+import auth from "@react-native-firebase/auth";
 import { WithKey } from "./firebaseClient.types";
 
 const firebaseClient = () => {
@@ -8,7 +9,7 @@ const firebaseClient = () => {
     collection: FirebaseFirestoreTypes.QuerySnapshot<FirebaseFirestoreTypes.DocumentData>,
     documentMapper: (doc: TDoc) => TModel,
   ): TModel[] => {
-    return collection.docs.map((doc) =>
+    return collection?.docs.map((doc) =>
       documentMapper({
         key: doc.id,
         ...doc.data(),
@@ -19,18 +20,37 @@ const firebaseClient = () => {
   const subscribeToCollection = <TModel, TDoc extends WithKey>(
     collectionName: string,
     documentMapper: (doc: TDoc) => TModel,
+    search: string | null,
     callback: (data: TModel[]) => void,
   ) => {
-    const unsubscribe = firestore()
-      .collectionGroup(collectionName)
-      //.collection(collectionName)
+    const userId = auth().currentUser?.uid;
 
-      //TODO: Add where
-      .onSnapshot((querySnapshot) => {
+    let query = firestore()
+      .collection(collectionName)
+      .where("userId", "==", userId);
+
+    if (search) {
+      query = query
+        .orderBy("title")
+        .startAt(search)
+        .endAt(search + "\uf8ff");
+      // query = query
+      //   .where("title", ">=", search)
+      //   .where("title", "<=", search + "\uf8ff");
+    }
+
+    console.log(search);
+
+    const unsubscribe = query.onSnapshot(
+      (querySnapshot) => {
         const data = collectionMapper(querySnapshot, documentMapper);
 
         callback(data);
-      });
+      },
+      (error) => {
+        console.log(error);
+      },
+    );
 
     return unsubscribe;
   };
@@ -40,8 +60,12 @@ const firebaseClient = () => {
     documentMapper: (doc: TDoc) => TModel,
   ): Promise<TModel[]> => {
     try {
-      //TODO: Add where
-      const collection = await firestore().collection(collectionName).get();
+      const userId = auth().currentUser?.uid;
+
+      const collection = await firestore()
+        .collection(collectionName)
+        .where("userId", "==", userId)
+        .get();
       return collectionMapper(collection, documentMapper);
     } catch (error) {
       console.log("Error fetching collection: ", error);
@@ -86,7 +110,6 @@ const firebaseClient = () => {
   };
 
   const removeDocument = async (collectionName: string, documentId: string) => {
-    //TODO: Remove Subcolletion
     await firestore().collection(collectionName).doc(documentId).delete();
   };
 

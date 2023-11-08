@@ -1578,6 +1578,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@babel/runtime@npm:^7.21.0":
+  version: 7.23.2
+  resolution: "@babel/runtime@npm:7.23.2"
+  dependencies:
+    regenerator-runtime: ^0.14.0
+  checksum: 6c4df4839ec75ca10175f636d6362f91df8a3137f86b38f6cd3a4c90668a0fe8e9281d320958f4fbd43b394988958585a17c3aab2a4ea6bf7316b22916a371fb
+  languageName: node
+  linkType: hard
+
 "@babel/template@npm:^7.0.0, @babel/template@npm:^7.22.15, @babel/template@npm:^7.22.5, @babel/template@npm:^7.3.3":
   version: 7.22.15
   resolution: "@babel/template@npm:7.22.15"
@@ -2301,9 +2310,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-native-firebase/app@npm:^18.4.0":
-  version: 18.4.0
-  resolution: "@react-native-firebase/app@npm:18.4.0"
+"@react-native-firebase/app@npm:^18.5.0":
+  version: 18.5.0
+  resolution: "@react-native-firebase/app@npm:18.5.0"
   dependencies:
     opencollective-postinstall: ^2.0.1
     superstruct: ^0.6.2
@@ -2314,16 +2323,45 @@ __metadata:
   peerDependenciesMeta:
     expo:
       optional: true
-  checksum: 27bdd9b4709a2fae3a7aac42486b529e2a82b0f36a2976a9e09193714d7f10cde09353ed3f079afdc2e116f83038d79016db5a6dcfcfee9c9888d384e90d29b8
+  checksum: 784f0d8382145a2e2a92ad71bea2ba3570bb7f454e40d8e3cfbfb5dd206d55ec464dabe32311f21639df0d969f40ec26d1edef76ab6b9ab7d442b86f69f82def
   languageName: node
   linkType: hard
 
-"@react-native-firebase/firestore@npm:^18.4.0":
-  version: 18.4.0
-  resolution: "@react-native-firebase/firestore@npm:18.4.0"
+"@react-native-firebase/auth@npm:^18.5.0":
+  version: 18.5.0
+  resolution: "@react-native-firebase/auth@npm:18.5.0"
+  dependencies:
+    plist: ^3.1.0
   peerDependencies:
-    "@react-native-firebase/app": 18.4.0
-  checksum: 52b44738507355f32825cb3ca0de0bd0dbdf0c0ac2c5115afc0920cb3d6dacff70162ae09ec041513f7e6e9e02723b2266a34b3145a5eacb9c74b71234005c2d
+    "@react-native-firebase/app": 18.5.0
+    expo: ">=47.0.0"
+  peerDependenciesMeta:
+    expo:
+      optional: true
+  checksum: 32df9f93b3b0d0b081a9767521b7019bb9edb896fda6934683a3319bf18cfd8c951b117613fb8ce25f7cf54e5b0ad81a2a75d83469986743e81268fbd51cb806
+  languageName: node
+  linkType: hard
+
+"@react-native-firebase/firestore@npm:^18.5.0":
+  version: 18.5.0
+  resolution: "@react-native-firebase/firestore@npm:18.5.0"
+  peerDependencies:
+    "@react-native-firebase/app": 18.5.0
+  checksum: 5de39d5aecae58553e571f0779704d6258d823236acb2f49ebcf466c463f73f949b654f23ba0ac622f71b5f79ac015947f319e6d0b5e36be20000093e2176d6f
+  languageName: node
+  linkType: hard
+
+"@react-native-google-signin/google-signin@npm:^10.0.1":
+  version: 10.0.1
+  resolution: "@react-native-google-signin/google-signin@npm:10.0.1"
+  peerDependencies:
+    expo: ">=47.0.0"
+    react: "*"
+    react-native: "*"
+  peerDependenciesMeta:
+    expo:
+      optional: true
+  checksum: d147a7ca4fbcc877efd21510670499a0be9f91b43d2b02bfee00f43d27ffe0920bbebc24b95f07443e375f4fd42f9403f91290541e120b1e9c26171b0796210a
   languageName: node
   linkType: hard
 
@@ -2907,6 +2945,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@xmldom/xmldom@npm:^0.8.8":
+  version: 0.8.10
+  resolution: "@xmldom/xmldom@npm:0.8.10"
+  checksum: 4c136aec31fb3b49aaa53b6fcbfe524d02a1dc0d8e17ee35bd3bf35e9ce1344560481cd1efd086ad1a4821541482528672306d5e37cdbd187f33d7fadd3e2cf0
+  languageName: node
+  linkType: hard
+
 "RecipeBook@workspace:.":
   version: 0.0.0-use.local
   resolution: "RecipeBook@workspace:."
@@ -2914,8 +2959,10 @@ __metadata:
     "@babel/core": ^7.20.0
     "@babel/preset-env": ^7.20.0
     "@babel/runtime": ^7.20.0
-    "@react-native-firebase/app": ^18.4.0
-    "@react-native-firebase/firestore": ^18.4.0
+    "@react-native-firebase/app": ^18.5.0
+    "@react-native-firebase/auth": ^18.5.0
+    "@react-native-firebase/firestore": ^18.5.0
+    "@react-native-google-signin/google-signin": ^10.0.1
     "@react-native/eslint-config": ^0.72.2
     "@react-native/metro-config": ^0.72.11
     "@react-navigation/native": ^6.1.7
@@ -2928,12 +2975,14 @@ __metadata:
     "@types/react-test-renderer": ^18.0.0
     babel-jest: ^29.2.1
     babel-plugin-module-resolver: ^5.0.0
+    date-fns: ^2.30.0
     eslint: ^8.37.0
     jest: ^29.2.1
     metro-react-native-babel-preset: 0.76.8
     prettier: ^2.8.7
     react: 18.2.0
     react-native: 0.72.4
+    react-native-config: ^1.5.1
     react-native-safe-area-context: ^4.7.2
     react-native-screens: ^3.25.0
     react-native-vector-icons: ^10.0.0
@@ -3485,7 +3534,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"base64-js@npm:^1.1.2, base64-js@npm:^1.3.1":
+"base64-js@npm:^1.1.2, base64-js@npm:^1.3.1, base64-js@npm:^1.5.1":
   version: 1.5.1
   resolution: "base64-js@npm:1.5.1"
   checksum: 669632eb3745404c2f822a18fc3a0122d2f9a7a13f7fb8b5823ee19d1d2ff9ee5b52c53367176ea4ad093c332fd5ab4bd0ebae5a8e27917a4105a4cfc86b1005
@@ -4024,6 +4073,15 @@ __metadata:
   version: 3.1.2
   resolution: "csstype@npm:3.1.2"
   checksum: e1a52e6c25c1314d6beef5168da704ab29c5186b877c07d822bd0806717d9a265e8493a2e35ca7e68d0f5d472d43fac1cdce70fd79fd0853dff81f3028d857b5
+  languageName: node
+  linkType: hard
+
+"date-fns@npm:^2.30.0":
+  version: 2.30.0
+  resolution: "date-fns@npm:2.30.0"
+  dependencies:
+    "@babel/runtime": ^7.21.0
+  checksum: f7be01523282e9bb06c0cd2693d34f245247a29098527d4420628966a2d9aad154bd0e90a6b1cf66d37adcb769cd108cf8a7bd49d76db0fb119af5cdd13644f4
   languageName: node
   linkType: hard
 
@@ -8286,6 +8344,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"plist@npm:^3.1.0":
+  version: 3.1.0
+  resolution: "plist@npm:3.1.0"
+  dependencies:
+    "@xmldom/xmldom": ^0.8.8
+    base64-js: ^1.5.1
+    xmlbuilder: ^15.1.1
+  checksum: c8ea013da8646d4c50dff82f9be39488054621cc229957621bb00add42b5d4ce3657cf58d4b10c50f7dea1a81118f825838f838baeb4e6f17fab453ecf91d424
+  languageName: node
+  linkType: hard
+
 "prelude-ls@npm:^1.2.1":
   version: 1.2.1
   resolution: "prelude-ls@npm:1.2.1"
@@ -8467,6 +8536,18 @@ __metadata:
   version: 17.0.2
   resolution: "react-is@npm:17.0.2"
   checksum: 9d6d111d8990dc98bc5402c1266a808b0459b5d54830bbea24c12d908b536df7883f268a7868cfaedde3dd9d4e0d574db456f84d2e6df9c4526f99bb4b5344d8
+  languageName: node
+  linkType: hard
+
+"react-native-config@npm:^1.5.1":
+  version: 1.5.1
+  resolution: "react-native-config@npm:1.5.1"
+  peerDependencies:
+    react-native-windows: ">=0.61"
+  peerDependenciesMeta:
+    react-native-windows:
+      optional: true
+  checksum: ae17b750e445310573ce33798db67c9b8c50e55cb2ba136e9a9ef8372dd3f7669ce236bb18bf1fa8a426fd1aa9e6b516fb2f593767bd24688242f6847cd37712
   languageName: node
   linkType: hard
 
@@ -10117,6 +10198,13 @@ __metadata:
     utf-8-validate:
       optional: true
   checksum: c3c100a181b731f40b7f2fddf004aa023f79d64f489706a28bc23ff88e87f6a64b3c6651fbec3a84a53960b75159574d7a7385709847a62ddb7ad6af76f49138
+  languageName: node
+  linkType: hard
+
+"xmlbuilder@npm:^15.1.1":
+  version: 15.1.1
+  resolution: "xmlbuilder@npm:15.1.1"
+  checksum: 14f7302402e28d1f32823583d121594a9dca36408d40320b33f598bd589ca5163a352d076489c9c64d2dc1da19a790926a07bf4191275330d4de2b0d85bb1843
   languageName: node
   linkType: hard
 

@@ -5,11 +5,10 @@ export const useUpdateDocument = (
   collectionName: string,
   documentId: string,
 ) => {
-  //const queryClient = useQueryClient();
+  // const queryClient = useQueryClient();
 
   return useMutation((data: Record<string, unknown>) => {
     return FirebaseClient.updateDocument(collectionName, documentId, data);
-
-    //    queryClient.invalidateQueries({ queryKey: [collectionName, documentId] });
+    // queryClient.invalidateQueries({ queryKey: [collectionName, documentId] });
   });
 };

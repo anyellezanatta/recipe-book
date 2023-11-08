@@ -31,6 +31,7 @@ export const RecipeCell: FC<{
     </TouchableHighlight>
   );
 };
+
 const styles = StyleSheet.create({
   container: {
     gap: spacing.medium,
