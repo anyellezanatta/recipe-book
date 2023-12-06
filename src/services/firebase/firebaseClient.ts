@@ -34,12 +34,11 @@ const firebaseClient = () => {
         .orderBy("title")
         .startAt(search)
         .endAt(search + "\uf8ff");
+      //TODO The firebase doesn't have a partial search and I need to choose between one of this methods(orderby or where) to try emulate the search
       // query = query
       //   .where("title", ">=", search)
       //   .where("title", "<=", search + "\uf8ff");
     }
-
-    console.log(search);
 
     const unsubscribe = query.onSnapshot(
       (querySnapshot) => {

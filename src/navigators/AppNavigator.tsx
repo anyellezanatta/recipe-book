@@ -19,9 +19,10 @@ const Stack = createNativeStackNavigator<AppStackParamList>();
 const AppStack = () => {
   const { colors } = useAppTheme();
 
-  const { initializing, user } = useAuth();
+  const { status, user } = useAuth();
 
-  if (initializing) return null;
+  if (status === "initializing") return null;
+
   return (
     <Stack.Navigator
       screenOptions={{
@@ -35,13 +36,15 @@ const AppStack = () => {
           options={{ headerTitle: "" }}
         />
       ) : (
-        <Stack.Screen name="Recipes" component={RecipeScreen} />
+        <>
+          <Stack.Screen name="Recipes" component={RecipeScreen} />
+          <Stack.Screen
+            name="DetailsScreen"
+            component={DetailsScreen}
+            options={{ headerTitle: "" }}
+          />
+        </>
       )}
-      <Stack.Screen
-        name="DetailsScreen"
-        component={DetailsScreen}
-        options={{ headerTitle: "" }}
-      />
     </Stack.Navigator>
   );
 };
