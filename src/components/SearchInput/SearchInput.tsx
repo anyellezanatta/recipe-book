@@ -24,9 +24,15 @@ export const SearchInput = ({
 }: SearchInputProps) => {
   const { colors } = useAppTheme();
 
+  const $styles = [
+    styles.container,
+    { backgroundColor: colors.inputBackground },
+    style,
+  ];
+
   const placeholder = inputPlaceholder;
   return (
-    <View style={[styles.container, style]}>
+    <View style={$styles}>
       <TextInput
         underlineColorAndroid="transparent"
         placeholderTextColor={colors.text}
@@ -47,7 +53,7 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
     alignItems: "center",
-    paddingVertical: spacing.tiny,
+    paddingVertical: spacing.nano,
     paddingHorizontal: spacing.extraSmall,
     borderRadius: 100,
   },
