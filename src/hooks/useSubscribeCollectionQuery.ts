@@ -6,6 +6,7 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 export const useSubscribeCollectionQuery = <TModel, TDoc extends WithKey>(
   collectionName: string,
   documentMapper: (doc: TDoc) => TModel,
+  search: string | null,
 ) => {
   const queryClient = useQueryClient();
 
@@ -13,12 +14,13 @@ export const useSubscribeCollectionQuery = <TModel, TDoc extends WithKey>(
     return FirebaseClient.subscribeToCollection<TModel, TDoc>(
       collectionName,
       documentMapper,
+      search,
       (data: TModel[]) => {
         queryClient.setQueriesData([collectionName], data);
         queryClient.invalidateQueries({ queryKey: [collectionName] });
       },
     );
-  }, [collectionName, documentMapper, queryClient]);
+  }, [collectionName, documentMapper, queryClient, search]);
 
   return useQuery<TModel[]>(
     [collectionName],

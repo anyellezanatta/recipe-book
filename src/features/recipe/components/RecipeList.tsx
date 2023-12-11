@@ -1,5 +1,10 @@
-import { FC } from "react";
-import { FlatList, ListRenderItemInfo, ViewProps } from "react-native";
+import { FC, useState } from "react";
+import {
+  FlatList,
+  KeyboardAvoidingView,
+  ListRenderItemInfo,
+  ViewProps,
+} from "react-native";
 import { Recipe } from "@/models";
 import { useSubscribeCollectionQuery } from "@/hooks/useSubscribeCollectionQuery";
 import { FullScreenLoader } from "@/components/FullScreenLoader/FullScreenLoader";
@@ -9,13 +14,16 @@ import { spacing } from "@/theme/spacing";
 import { Separator } from "@/components/Separator";
 import { useNavigation } from "@react-navigation/native";
 import { recipeDocMapper } from "../mappers/recipeDocMapper";
+import { DebouncedSearchInput } from "@/components/DebouncedSearchInput";
 
-export const RecipeList: FC<ViewProps> = () => {
+export const RecipeList: FC<ViewProps> = (props) => {
   const navigation = useNavigation();
+  const [searchTerm, setSearchTerm] = useState<string | null>(null);
 
   const { data, isLoading } = useSubscribeCollectionQuery<Recipe, RecipeDoc>(
     "recipes",
     recipeDocMapper,
+    searchTerm,
   );
 
   if (isLoading) {
@@ -32,11 +40,14 @@ export const RecipeList: FC<ViewProps> = () => {
   };
 
   return (
-    <FlatList
-      data={data}
-      renderItem={renderItem}
-      contentContainerStyle={{ padding: spacing.medium }}
-      ItemSeparatorComponent={Separator}
-    />
+    <KeyboardAvoidingView {...props}>
+      <DebouncedSearchInput onSearch={setSearchTerm} />
+      <FlatList
+        data={data}
+        renderItem={renderItem}
+        contentContainerStyle={{ padding: spacing.medium }}
+        ItemSeparatorComponent={Separator}
+      />
+    </KeyboardAvoidingView>
   );
 };
