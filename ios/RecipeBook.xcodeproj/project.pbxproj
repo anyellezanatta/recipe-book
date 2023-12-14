@@ -11,9 +11,10 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		1A4787362AB642D20095B3BD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1A4787352AB642D20095B3BD /* GoogleService-Info.plist */; };
 		2DF1C692DA77F2101A7A0E14 /* Pods_RecipeBook_RecipeBookTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB30AE2EE1E24EC3B1CD02E8 /* Pods_RecipeBook_RecipeBookTests.framework */; };
 		6357B0C60E5159F6791056C8 /* Pods_RecipeBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEC2E42752E48E63DE80331D /* Pods_RecipeBook.framework */; };
+		64C4414E2B29017100142BC6 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 64C4414D2B29017100142BC6 /* Ionicons.ttf */; };
+		64D7B62C2B27889F00359D0C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 64D7B62B2B27889F00359D0C /* GoogleService-Info.plist */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
@@ -37,10 +38,11 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = RecipeBook/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = RecipeBook/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = RecipeBook/main.m; sourceTree = "<group>"; };
-		1A4787352AB642D20095B3BD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3B4392A12AC88292D35C810B /* Pods-RecipeBook.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecipeBook.debug.xcconfig"; path = "Target Support Files/Pods-RecipeBook/Pods-RecipeBook.debug.xcconfig"; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-RecipeBook.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecipeBook.release.xcconfig"; path = "Target Support Files/Pods-RecipeBook/Pods-RecipeBook.release.xcconfig"; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-RecipeBook-RecipeBookTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecipeBook-RecipeBookTests.debug.xcconfig"; path = "Target Support Files/Pods-RecipeBook-RecipeBookTests/Pods-RecipeBook-RecipeBookTests.debug.xcconfig"; sourceTree = "<group>"; };
+		64C4414D2B29017100142BC6 /* Ionicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
+		64D7B62B2B27889F00359D0C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "RecipeBook/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = RecipeBook/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-RecipeBook-RecipeBookTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecipeBook-RecipeBookTests.release.xcconfig"; path = "Target Support Files/Pods-RecipeBook-RecipeBookTests/Pods-RecipeBook-RecipeBookTests.release.xcconfig"; sourceTree = "<group>"; };
 		AB30AE2EE1E24EC3B1CD02E8 /* Pods_RecipeBook_RecipeBookTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RecipeBook_RecipeBookTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -88,6 +90,8 @@
 		13B07FAE1A68108700A75B9A /* RecipeBook */ = {
 			isa = PBXGroup;
 			children = (
+				64C4414D2B29017100142BC6 /* Ionicons.ttf */,
+				64D7B62B2B27889F00359D0C /* GoogleService-Info.plist */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
@@ -118,7 +122,6 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				1A4787352AB642D20095B3BD /* GoogleService-Info.plist */,
 				13B07FAE1A68108700A75B9A /* RecipeBook */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* RecipeBookTests */,
@@ -248,7 +251,8 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				1A4787362AB642D20095B3BD /* GoogleService-Info.plist in Resources */,
+				64C4414E2B29017100142BC6 /* Ionicons.ttf in Resources */,
+				64D7B62C2B27889F00359D0C /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,6 +9,7 @@ import {
 
 GoogleSignin.configure({
   webClientId: Config.WEB_CLIENT_ID,
+  iosClientId: Config.IOS_CLIENT_ID,
 });
 
 export type GoogleSignInButtonProps = ViewProps;
@@ -20,10 +21,17 @@ export const GoogleSignInButton: FC<GoogleSignInButtonProps> = ({
   const $styles = [styles.container, $styleOverride];
 
   async function onGoogleButtonPress() {
-    await GoogleSignin.hasPlayServices({ showPlayServicesUpdateDialog: true });
-    const user = await GoogleSignin.signIn();
-    const googleCredential = auth.GoogleAuthProvider.credential(user.idToken);
-    return auth().signInWithCredential(googleCredential);
+    try {
+      await GoogleSignin.hasPlayServices({
+        showPlayServicesUpdateDialog: true,
+      });
+      const user = await GoogleSignin.signIn();
+      const googleCredential = auth.GoogleAuthProvider.credential(user.idToken);
+      return auth().signInWithCredential(googleCredential);
+    } catch (error) {
+      console.log("ERROR:" + JSON.stringify(error));
+    }
+    console.log("signin");
   }
   return (
     <View {...props} style={$styles}>
