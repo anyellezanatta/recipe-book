@@ -28,21 +28,19 @@ const AppStack = () => {
       screenOptions={{
         headerShadowVisible: false,
         headerStyle: { backgroundColor: colors.background },
+        navigationBarColor: "transparent",
+        headerTitle: "",
       }}>
       {!user ? (
-        <Stack.Screen
-          name="SignIn"
-          component={GoogleSignInButton}
-          options={{ headerTitle: "" }}
-        />
+        <Stack.Screen name="SignIn" component={GoogleSignInButton} />
       ) : (
         <>
-          <Stack.Screen name="Recipes" component={RecipeScreen} />
           <Stack.Screen
-            name="DetailsScreen"
-            component={DetailsScreen}
-            options={{ headerTitle: "" }}
+            name="Recipes"
+            component={RecipeScreen}
+            options={{ headerTitle: "Recipes" }}
           />
+          <Stack.Screen name="DetailsScreen" component={DetailsScreen} />
         </>
       )}
     </Stack.Navigator>
