@@ -15,7 +15,7 @@ import { Screen } from "@/components/Screen";
 
 export const DetailsScreen = ({
   route,
-}: NativeStackScreenProps<AppStackParamList, "DetailsScreen">) => {
+}: NativeStackScreenProps<AppStackParamList, "RecipeDetails">) => {
   const { id } = route.params;
   const { data, isLoading } = useDocumentQuery<Recipe, RecipeDoc>(
     "recipes",

@@ -29,7 +29,7 @@ export const RecipeList = () => {
     return (
       <RecipeCell
         item={item}
-        onPress={() => navigation.navigate("DetailsScreen", { id: item.key })}
+        onPress={() => navigation.navigate("RecipeDetails", { id: item.key })}
       />
     );
   };

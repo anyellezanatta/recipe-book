@@ -9,7 +9,7 @@ import { useAuth } from "@/features/authentication/hooks/useAuth";
 export type AppStackParamList = {
   SignIn: undefined;
   Recipes: undefined;
-  DetailsScreen: {
+  RecipeDetails: {
     id: string;
   };
 };
@@ -40,7 +40,7 @@ const AppStack = () => {
             component={RecipeScreen}
             options={{ headerTitle: "Recipes" }}
           />
-          <Stack.Screen name="DetailsScreen" component={DetailsScreen} />
+          <Stack.Screen name="RecipeDetails" component={DetailsScreen} />
         </>
       )}
     </Stack.Navigator>
