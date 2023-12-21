@@ -1,13 +1,15 @@
-import { useRecipe } from "../hooks/useRecipe";
-import { RecipeInfoCardList } from "./RecipeInfoCardList";
-import { Text } from "@/components/Text";
-import { View } from "react-native";
-import { StyleSheet } from "react-native";
-import { ViewProps } from "react-native";
 import { FC } from "react";
-import { StyleProp } from "react-native";
-import { ViewStyle } from "react-native";
+import {
+  View,
+  ViewProps,
+  StyleSheet,
+  StyleProp,
+  ViewStyle,
+} from "react-native";
+import { useRecipe } from "@/features/recipe/hooks/useRecipe";
+import { Text } from "@/components/Text";
 import { Image } from "@/components/Image";
+import { RecipeInfoCardList } from "./RecipeInfoCardList";
 
 export type RecipeHeaderProps = ViewProps;
 

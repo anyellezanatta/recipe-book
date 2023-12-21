@@ -10,6 +10,11 @@ import {
   ViewProps,
   ViewStyle,
 } from "react-native";
+import {
+  SafeAreaView,
+  SafeAreaViewProps,
+} from "react-native-safe-area-context";
+import { StatusBar } from "@/components/StatusBar";
 
 type ScrollableScreenProps = { preset?: "scrollable" } & ScrollViewProps;
 
@@ -17,10 +22,14 @@ type FixedScreenProps = { preset?: "fixed" } & ViewProps;
 
 type ScreenProps = (ScrollableScreenProps | FixedScreenProps) & {
   keyboardAvoidingViewProps?: KeyboardAvoidingViewProps;
+  safeAreaEdges?: SafeAreaViewProps["edges"];
+  safeAreaMode?: SafeAreaViewProps["mode"];
 };
 
 export const Screen: FC<ScreenProps> = ({
   preset = "fixed",
+  safeAreaEdges = [],
+  safeAreaMode,
   keyboardAvoidingViewProps,
   children,
   ...props
@@ -35,13 +44,19 @@ export const Screen: FC<ScreenProps> = ({
   ];
 
   return (
-    <Component {...props} style={containerStyles}>
-      <KeyboardAvoidingView
-        {...keyboardAvoidingViewProps}
-        style={keyboardAvoidingStyles}>
-        {children}
-      </KeyboardAvoidingView>
-    </Component>
+    <SafeAreaView
+      edges={safeAreaEdges}
+      mode={safeAreaMode}
+      style={styles.container}>
+      <StatusBar />
+      <Component {...props} style={containerStyles}>
+        <KeyboardAvoidingView
+          {...keyboardAvoidingViewProps}
+          style={keyboardAvoidingStyles}>
+          {children}
+        </KeyboardAvoidingView>
+      </Component>
+    </SafeAreaView>
   );
 };
 

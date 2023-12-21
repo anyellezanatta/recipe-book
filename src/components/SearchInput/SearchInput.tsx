@@ -7,7 +7,7 @@ import {
   View,
   ViewStyle,
 } from "react-native";
-import { Icon } from "../Icon";
+import { Icon } from "@/components/Icon";
 import { spacing } from "@/theme/spacing";
 import { useAppTheme } from "@/hooks/useAppTheme";
 
