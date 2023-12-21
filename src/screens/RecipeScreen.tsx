@@ -1,19 +1,10 @@
-import { StyleSheet, View } from "react-native";
 import { RecipeList } from "@/features/recipe/components/RecipeList";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { Screen } from "@/components/Screen";
 
 export const RecipeScreen = () => {
-  const insets = useSafeAreaInsets();
-
   return (
-    <View style={[styles.container, { paddingBottom: insets.bottom }]}>
+    <Screen>
       <RecipeList />
-    </View>
+    </Screen>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});

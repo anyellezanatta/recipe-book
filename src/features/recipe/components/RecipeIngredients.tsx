@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { StyleSheet, View, ViewProps } from "react-native";
-import { useRecipe } from "../hooks/useRecipe";
+import { useRecipe } from "@/features/recipe/hooks/useRecipe";
 import { Text } from "@/components/Text";
 import { spacing } from "@/theme/spacing";
 import { RecipeIngredient } from "./RecipeIngredient";

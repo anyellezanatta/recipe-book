@@ -1,5 +1,5 @@
 import { FC, useEffect, useState } from "react";
-import { SearchInput, SearchInputProps } from "../SearchInput";
+import { SearchInput, SearchInputProps } from "@/components/SearchInput";
 import { useDebounce } from "@/hooks/useDebounce";
 
 export type DebouncedSearchInputProps = Omit<
