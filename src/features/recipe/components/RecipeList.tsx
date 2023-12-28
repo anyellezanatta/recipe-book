@@ -1,22 +1,17 @@
-import { FC, useState } from "react";
-import {
-  FlatList,
-  KeyboardAvoidingView,
-  ListRenderItemInfo,
-  ViewProps,
-} from "react-native";
+import { useState } from "react";
+import { FlatList, ListRenderItemInfo, StyleSheet, View } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import { Recipe } from "@/models";
 import { useSubscribeCollectionQuery } from "@/hooks/useSubscribeCollectionQuery";
 import { FullScreenLoader } from "@/components/FullScreenLoader/FullScreenLoader";
 import { RecipeDoc } from "@/services/firebase/firebaseClient.types";
-import { RecipeCell } from "./RecipeCell";
 import { spacing } from "@/theme/spacing";
 import { Separator } from "@/components/Separator";
-import { useNavigation } from "@react-navigation/native";
-import { recipeDocMapper } from "../mappers/recipeDocMapper";
+import { recipeDocMapper } from "@/features/recipe/mappers/recipeDocMapper";
 import { DebouncedSearchInput } from "@/components/DebouncedSearchInput";
+import { RecipeCell } from "./RecipeCell";
 
-export const RecipeList: FC<ViewProps> = (props) => {
+export const RecipeList = () => {
   const navigation = useNavigation();
   const [searchTerm, setSearchTerm] = useState<string | null>(null);
 
@@ -34,20 +29,33 @@ export const RecipeList: FC<ViewProps> = (props) => {
     return (
       <RecipeCell
         item={item}
-        onPress={() => navigation.navigate("DetailsScreen", { id: item.key })}
+        onPress={() => navigation.navigate("RecipeDetails", { id: item.key })}
       />
     );
   };
 
   return (
-    <KeyboardAvoidingView {...props}>
-      <DebouncedSearchInput onSearch={setSearchTerm} />
+    <View style={styles.container}>
+      <DebouncedSearchInput
+        style={{ marginHorizontal: spacing.medium }}
+        onSearch={setSearchTerm}
+      />
       <FlatList
         data={data}
         renderItem={renderItem}
-        contentContainerStyle={{ padding: spacing.medium }}
+        contentContainerStyle={{
+          paddingHorizontal: spacing.medium,
+          paddingBottom: spacing.huge,
+        }}
         ItemSeparatorComponent={Separator}
       />
-    </KeyboardAvoidingView>
+    </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    gap: spacing.medium,
+  },
+});

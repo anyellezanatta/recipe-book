@@ -6,7 +6,7 @@ import {
   ViewProps,
   ViewStyle,
 } from "react-native";
-import { useRecipe } from "../hooks/useRecipe";
+import { useRecipe } from "@/features/recipe/hooks/useRecipe";
 import { Text } from "@/components/Text";
 import { spacing } from "@/theme/spacing";
 
