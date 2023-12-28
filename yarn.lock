@@ -2983,6 +2983,7 @@ __metadata:
     react: 18.2.0
     react-native: 0.72.4
     react-native-config: ^1.5.1
+    react-native-image-picker: ^7.1.0
     react-native-safe-area-context: ^4.7.2
     react-native-screens: ^3.25.0
     react-native-vector-icons: ^10.0.0
@@ -8548,6 +8549,16 @@ __metadata:
     react-native-windows:
       optional: true
   checksum: ae17b750e445310573ce33798db67c9b8c50e55cb2ba136e9a9ef8372dd3f7669ce236bb18bf1fa8a426fd1aa9e6b516fb2f593767bd24688242f6847cd37712
+  languageName: node
+  linkType: hard
+
+"react-native-image-picker@npm:^7.1.0":
+  version: 7.1.0
+  resolution: "react-native-image-picker@npm:7.1.0"
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  checksum: 7f5c16dbcde719367e8fea7e05dd0ca8cb4cb4d163ce3fd093440fde69ff536dfb12f8b14a82b3d306785b7a5609e99042a981050631aa91cffb0a410c056ef9
   languageName: node
   linkType: hard
 
