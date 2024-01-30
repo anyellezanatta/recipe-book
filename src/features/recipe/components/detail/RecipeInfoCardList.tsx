@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import { useRecipe } from "@/features/recipe/hooks/useRecipe";
 import { RecipeInfoCard } from "./RecipeInfoCard";
-import { RecipeInfo } from "./types";
+import { RecipeInfo } from "@/features/recipe/components/types";
 
 export type RecipeInfoCardListProps = ViewProps;
 

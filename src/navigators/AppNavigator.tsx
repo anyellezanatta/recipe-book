@@ -5,7 +5,7 @@ import { useAppTheme } from "@/hooks/useAppTheme";
 import { DetailsScreen } from "@/screens/DetailsScreen";
 import { GoogleSignInButton } from "@/features/authentication/components/GoogleSignInButton";
 import { useAuth } from "@/features/authentication/hooks/useAuth";
-import { EditScreen } from "@/screens/EditScreen";
+import { AddScreen } from "@/screens/AddScreen";
 
 export type AppStackParamList = {
   SignIn: undefined;
@@ -13,7 +13,7 @@ export type AppStackParamList = {
   RecipeDetails: {
     id: string;
   };
-  EditScreen: undefined;
+  RecipeAdd: undefined;
 };
 
 const Stack = createNativeStackNavigator<AppStackParamList>();
@@ -43,7 +43,7 @@ const AppStack = () => {
             options={{ headerTitle: "Recipes" }}
           />
           <Stack.Screen name="RecipeDetails" component={DetailsScreen} />
-          <Stack.Screen name="EditScreen" component={EditScreen} />
+          <Stack.Screen name="RecipeAdd" component={AddScreen} />
         </>
       )}
     </Stack.Navigator>

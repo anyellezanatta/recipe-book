@@ -1,15 +1,16 @@
 import {
+  Callback,
   launchCamera,
-  // launchImageLibrary
+  launchImageLibrary,
 } from "react-native-image-picker";
 
 const imagePickerClient = () => {
-  const launchCameraPhone = () => {
-    launchCamera({ mediaType: "photo" }, () => {
-      console.log("aaaa");
-    });
+  const launchCameraPhone = (callback?: Callback) => {
+    return launchCamera({ mediaType: "photo" }, callback);
   };
-  const launchImageLibraryPhone = () => {};
+  const launchImageLibraryPhone = (callback?: Callback) => {
+    return launchImageLibrary({ mediaType: "photo" }, callback);
+  };
 
   return { launchCameraPhone, launchImageLibraryPhone };
 };

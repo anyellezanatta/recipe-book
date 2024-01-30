@@ -1,5 +1,5 @@
 import { InfoCard } from "@/components/InfoCard";
-import { RecipeInfo } from "./types";
+import { RecipeInfo } from "@/features/recipe/components/types";
 import { FC } from "react";
 import { ViewProps } from "react-native";
 import { minutesToHours } from "date-fns";

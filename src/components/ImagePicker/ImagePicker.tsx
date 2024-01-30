@@ -4,25 +4,26 @@ import { Image } from "../Image/Image";
 import { Text } from "../Text";
 import { usePickImage } from "@/hooks/usePickImage";
 
-export type ImagePickerProps = ViewProps;
+export type ImagePickerProps = ViewProps & {
+  onSetUrl: (url: string) => void;
+};
 
-export const ImagePicker: FC<ImagePickerProps> = ({ ...props }) => {
-  const imageUrl = "";
+export const ImagePicker: FC<ImagePickerProps> = ({ onSetUrl, ...props }) => {
+  const pickImage = usePickImage();
 
-  const a = usePickImage();
-  const pickImage = () => {
-    a;
-    console.log("pressed");
+  const pickImagePress = () => {
+    pickImage.launchImageLibrary();
+    if (pickImage.url) onSetUrl(pickImage.url);
   };
 
   return (
     <View {...props}>
       <Pressable
         style={({ pressed }) => [{ opacity: pressed ? 0.5 : 1.0 }]}
-        onPress={pickImage}>
-        <Text text="Add Image" size={"lg"} />
+        onPress={pickImagePress}>
+        <Text text="Add Image" size={"sm"} />
       </Pressable>
-      <Image source={{ uri: imageUrl }} />
+      {pickImage.url ? <Image source={{ uri: pickImage.url }} /> : null}
     </View>
   );
 };

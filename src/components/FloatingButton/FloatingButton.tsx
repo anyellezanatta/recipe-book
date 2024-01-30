@@ -35,10 +35,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     width: 50,
     height: 50,
-    position: "absolute",
     backgroundColor: "black",
-    top: 390,
-    right: 20,
     borderRadius: 100,
   },
 });

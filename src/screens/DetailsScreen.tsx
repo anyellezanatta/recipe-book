@@ -6,11 +6,11 @@ import { AppStackParamList } from "@/navigators/AppNavigator";
 import { RecipeDoc } from "@/services/firebase/firebaseClient.types";
 import { spacing } from "@/theme/spacing";
 import { FullScreenLoader } from "@/components/FullScreenLoader/FullScreenLoader";
-import { RecipeProvider } from "@/features/recipe/contexts/RecipeProvider";
+import { RecipeProvider } from "@/features/recipe/contexts/detail/RecipeProvider";
 import { recipeDocMapper } from "@/features/recipe/mappers/recipeDocMapper";
-import { RecipeHeader } from "@/features/recipe/components/RecipeHeader";
-import { RecipeIngredients } from "@/features/recipe/components/RecipeIngredients";
-import { RecipePreparationMethods } from "@/features/recipe/components/RecipePreparationMethods";
+import { RecipeHeader } from "@/features/recipe/components/detail/RecipeHeader";
+import { RecipeIngredients } from "@/features/recipe/components/detail/RecipeIngredients";
+import { RecipePreparationMethods } from "@/features/recipe/components/detail/RecipePreparationMethods";
 import { Screen } from "@/components/Screen";
 
 export const DetailsScreen = ({
@@ -28,16 +28,16 @@ export const DetailsScreen = ({
   }
 
   return (
-    <RecipeProvider recipe={data}>
-      <Screen
-        preset="scrollable"
-        style={styles.container}
-        contentContainerStyle={{ paddingTop: spacing.medium }}>
+    <Screen
+      preset="scrollable"
+      style={styles.container}
+      contentContainerStyle={{ paddingTop: spacing.medium }}>
+      <RecipeProvider recipe={data}>
         <RecipeHeader />
         <RecipeIngredients />
         <RecipePreparationMethods />
-      </Screen>
-    </RecipeProvider>
+      </RecipeProvider>
+    </Screen>
   );
 };
 
