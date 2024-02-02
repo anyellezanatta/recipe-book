@@ -2,6 +2,7 @@ import { FC } from "react";
 import { StyleSheet, TextInput, View, ViewProps } from "react-native";
 import { IconButton } from "@/components/IconButton";
 import { useAppTheme } from "@/hooks/useAppTheme";
+import { useBottomSheetModal } from "@gorhom/bottom-sheet";
 
 export type RecipePreparationMethodModalProps = ViewProps;
 
@@ -9,7 +10,13 @@ export const RecipePreparationMethodModal: FC<
   RecipePreparationMethodModalProps
 > = ({ style, ...props }) => {
   const { colors } = useAppTheme();
+  const { dismiss } = useBottomSheetModal();
+
   const inputStyle = [styles.textInput, { borderColor: colors.border }];
+
+  const handleAddPreparationMethod = () => {
+    dismiss();
+  };
 
   return (
     <View {...props} style={[style, styles.container]}>
@@ -23,7 +30,7 @@ export const RecipePreparationMethodModal: FC<
           style={styles.button}
           icon="checkmark"
           size={"lg"}
-          // onPress={onCloseModal}
+          onPress={handleAddPreparationMethod}
         />
       </View>
     </View>
