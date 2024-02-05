@@ -40,7 +40,7 @@ const AppStack = () => {
           <Stack.Screen
             name="Recipes"
             component={RecipeScreen}
-            options={{ headerTitle: "Recipes" }}
+            options={{ headerTitle: "Recipes", headerTitleAlign: "left" }}
           />
           <Stack.Screen name="RecipeDetails" component={DetailsScreen} />
           <Stack.Screen name="RecipeAdd" component={AddScreen} />

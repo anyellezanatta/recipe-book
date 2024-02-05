@@ -10,6 +10,7 @@ import { Separator } from "@/components/Separator";
 import { recipeDocMapper } from "@/features/recipe/mappers/recipeDocMapper";
 import { DebouncedSearchInput } from "@/components/DebouncedSearchInput";
 import { RecipeCell } from "./RecipeCell";
+import { Text } from "@/components/Text";
 
 export const RecipeList = () => {
   const navigation = useNavigation();
@@ -37,8 +38,14 @@ export const RecipeList = () => {
   return (
     <View style={styles.container}>
       <DebouncedSearchInput
-        style={{ marginHorizontal: spacing.medium }}
+        style={styles.inputSearch}
         onSearch={setSearchTerm}
+        placeholder={"Search for a recipe"}
+      />
+      <Text
+        text="Popular Recipes"
+        size="sm"
+        style={{ marginHorizontal: spacing.large }}
       />
       <FlatList
         data={data}
@@ -56,6 +63,10 @@ export const RecipeList = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    gap: spacing.medium,
+    gap: spacing.extraLarge,
+  },
+  inputSearch: {
+    marginHorizontal: spacing.medium,
+    height: 50,
   },
 });

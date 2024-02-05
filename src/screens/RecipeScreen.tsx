@@ -1,6 +1,6 @@
-import { RecipeList } from "@/features/recipe/components/detail/RecipeList";
+import { RecipeList } from "@/features/recipe/components/list/RecipeList";
 import { Screen } from "@/components/Screen";
-import { FloatingButton } from "@/components/FloatingButton";
+import { RoundButton } from "@/components/RoundButton";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { AppStackParamList } from "@/navigators/AppNavigator";
@@ -12,7 +12,7 @@ export const RecipeScreen = ({ navigation }: RecipeScreenProps) => {
   return (
     <Screen>
       <RecipeList />
-      <FloatingButton
+      <RoundButton
         style={{ position: "absolute", right: 32, bottom: 32 }}
         onPress={() => {
           navigation.navigate("RecipeAdd");
