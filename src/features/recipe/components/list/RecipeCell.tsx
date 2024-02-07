@@ -5,10 +5,10 @@ import { spacing } from "@/theme/spacing";
 import { Text } from "@/components/Text/Text";
 import { ToggleIconButton } from "@/components/ToggleButton";
 import { useFavoriteRecipe } from "@/features/recipe/hooks/useFavoriteRecipe";
-import { Image } from "@/components/Image";
 import { useAuth } from "@/features/authentication/hooks/useAuth";
 import { UserImage } from "@/components/UserImage";
 import { useAppTheme } from "@/hooks/useAppTheme";
+import { RecipeImage } from "./RecipeImage";
 
 export const RecipeCell: FC<{
   item: Recipe;
@@ -21,7 +21,10 @@ export const RecipeCell: FC<{
   return (
     <TouchableOpacity onPress={() => onPress?.(item.key)}>
       <View style={styles.container}>
-        <Image source={{ uri: item.imageUrl }} />
+        <RecipeImage
+          url={item.imageUrl}
+          preparationTime={item.preparationTime}
+        />
         <View style={styles.titleContainer}>
           <UserImage source={{ uri: user?.photoURL! }} />
           <View style={styles.subTitleContainer}>
@@ -63,6 +66,6 @@ const styles = StyleSheet.create({
   buttonsContainer: {
     flex: 1,
     flexDirection: "row",
-    alignContent: "space-around",
+    gap: spacing.large,
   },
 });

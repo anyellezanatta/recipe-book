@@ -43,7 +43,7 @@ export const RecipeList = () => {
         placeholder={"Search for a recipe"}
       />
       <Text
-        text="Popular Recipes"
+        text="My Recipes"
         size="sm"
         style={{ marginHorizontal: spacing.large }}
       />
@@ -64,6 +64,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     gap: spacing.extraLarge,
+    paddingTop: spacing.large,
   },
   inputSearch: {
     marginHorizontal: spacing.medium,
