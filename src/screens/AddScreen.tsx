@@ -1,5 +1,5 @@
 import { useCallback, useRef } from "react";
-import { StyleSheet, View } from "react-native";
+import { ScrollView, StyleSheet, View } from "react-native";
 import { Screen } from "@/components/Screen";
 import { RecipeAddProvider } from "@/features/recipe/contexts/add/RecipeAddProvider";
 import { RecipeHeaderAdd } from "@/features/recipe/components/add/RecipeHeaderAdd";
@@ -12,6 +12,7 @@ import {
 import { RecipePreparationMethodModal } from "@/features/recipe/components/add/RecipePreparationMethodModal";
 import { RecipeIngredientModal } from "@/features/recipe/components/add/RecipeIngredientModal";
 import { RecipeAddList } from "@/features/recipe/components/add/RecipeAddList";
+import { spacing } from "@/theme/spacing";
 
 export const AddScreen = () => {
   const refPreparationMethod = useRef<BottomSheetModal>(null);
@@ -44,15 +45,17 @@ export const AddScreen = () => {
       <RecipeAddProvider>
         <BottomSheetModalProvider>
           <View style={styles.container}>
-            <RecipeHeaderAdd />
-            <RecipeAddList
-              onAddPress={onExpandModalIngredient}
-              listType={"ingredients"}
-            />
-            <RecipeAddList
-              onAddPress={onExpandModalPreparationMethod}
-              listType={"preparationMethods"}
-            />
+            <ScrollView>
+              <RecipeHeaderAdd />
+              <RecipeAddList
+                onAddPress={onExpandModalIngredient}
+                listType={"ingredients"}
+              />
+              <RecipeAddList
+                onAddPress={onExpandModalPreparationMethod}
+                listType={"preparationMethods"}
+              />
+            </ScrollView>
             <RecipeFooterAdd onPress={() => {}} />
           </View>
 
@@ -77,5 +80,6 @@ export const AddScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    paddingHorizontal: spacing.medium,
   },
 });

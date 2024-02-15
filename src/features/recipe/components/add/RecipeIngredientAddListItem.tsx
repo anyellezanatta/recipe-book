@@ -12,9 +12,9 @@ export const RecipeIngredientAddListItem: FC<
 > = ({ style, item, ...props }) => {
   return (
     <View {...props} style={[style, styles.container]}>
-      <Text text={`-  ${item.quantity}`} size="sm" />
-      <Text text={item.unit} size="sm" />
-      <Text text={item.name} size="sm" />
+      <Text text={`-  ${item.quantity}`} size="xs" />
+      <Text text={item.unit} size="xs" />
+      <Text text={item.name} size="xs" />
     </View>
   );
 };

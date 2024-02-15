@@ -2,6 +2,7 @@ import firestore, {
   FirebaseFirestoreTypes,
 } from "@react-native-firebase/firestore";
 import auth from "@react-native-firebase/auth";
+import storage from "@react-native-firebase/storage";
 import { WithKey } from "./firebaseClient.types";
 
 const firebaseClient = () => {
@@ -92,12 +93,14 @@ const firebaseClient = () => {
     return Promise.resolve();
   };
 
-  const addDocument = async <TModel, TDoc extends WithKey>(
-    collectionName: string,
-    documentMapper: (model: TModel) => TDoc,
-    data: TModel,
-  ) => {
-    await firestore().collection(collectionName).add(documentMapper(data));
+  const addDocument = async <TModel>(collectionName: string, data: TModel) => {
+    try {
+      await firestore()
+        .collection(collectionName)
+        .add(data as Document);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const updateDocument = async (
@@ -112,6 +115,18 @@ const firebaseClient = () => {
     await firestore().collection(collectionName).doc(documentId).delete();
   };
 
+  const uploadImage = (url: string) => {
+    //const reference =
+    storage().ref(url);
+    // try {
+    //   // const task = await reference.putFile(url);
+    //   // return task.metadata.fullPath;
+    // } catch (error) {
+    //   console.log(error);
+    // }
+    return "";
+  };
+
   return {
     subscribeToCollection,
     fetchCollection,
@@ -119,6 +134,7 @@ const firebaseClient = () => {
     addDocument,
     updateDocument,
     removeDocument,
+    uploadImage,
   };
 };
 

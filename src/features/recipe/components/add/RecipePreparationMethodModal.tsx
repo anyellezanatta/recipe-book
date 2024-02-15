@@ -1,8 +1,9 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import { StyleSheet, TextInput, View, ViewProps } from "react-native";
 import { IconButton } from "@/components/IconButton";
 import { useAppTheme } from "@/hooks/useAppTheme";
 import { useBottomSheetModal } from "@gorhom/bottom-sheet";
+import { useRecipeAdd } from "../../hooks/useRecipeAdd";
 
 export type RecipePreparationMethodModalProps = ViewProps;
 
@@ -11,10 +12,13 @@ export const RecipePreparationMethodModal: FC<
 > = ({ style, ...props }) => {
   const { colors } = useAppTheme();
   const { dismiss } = useBottomSheetModal();
+  const { addPreparationMethods } = useRecipeAdd();
 
   const inputStyle = [styles.textInput, { borderColor: colors.border }];
+  const [preparationMethod, setPreparationMethod] = useState("");
 
   const handleAddPreparationMethod = () => {
+    addPreparationMethods!(preparationMethod);
     dismiss();
   };
 
@@ -24,7 +28,8 @@ export const RecipePreparationMethodModal: FC<
         <TextInput
           style={inputStyle}
           placeholder="Description"
-          //onChangeText={setPreparationMethod}
+          multiline
+          onChangeText={setPreparationMethod}
         />
         <IconButton
           style={styles.button}
@@ -42,7 +47,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   textInput: {
-    height: 40,
+    height: 120,
     borderBottomWidth: 1,
   },
   button: { alignSelf: "flex-end" },

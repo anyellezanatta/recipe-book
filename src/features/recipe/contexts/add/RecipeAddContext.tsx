@@ -9,6 +9,7 @@ type RecipeAddContextType = {
   ) => void;
   addIngredient?: (ingredient: Ingredient) => void;
   addPreparationMethods?: (preparationMethod: string) => void;
+  saveRecipe: () => void;
 };
 
 export const RecipeAddContext = createContext<RecipeAddContextType | null>(

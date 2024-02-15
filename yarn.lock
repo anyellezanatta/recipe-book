@@ -2499,11 +2499,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-native-firebase/app@npm:^18.5.0":
-  version: 18.5.0
-  resolution: "@react-native-firebase/app@npm:18.5.0"
+"@react-native-firebase/app@npm:^18.8.0":
+  version: 18.8.0
+  resolution: "@react-native-firebase/app@npm:18.8.0"
   dependencies:
-    opencollective-postinstall: ^2.0.1
+    opencollective-postinstall: ^2.0.3
     superstruct: ^0.6.2
   peerDependencies:
     expo: ">=47.0.0"
@@ -2512,31 +2512,40 @@ __metadata:
   peerDependenciesMeta:
     expo:
       optional: true
-  checksum: 784f0d8382145a2e2a92ad71bea2ba3570bb7f454e40d8e3cfbfb5dd206d55ec464dabe32311f21639df0d969f40ec26d1edef76ab6b9ab7d442b86f69f82def
+  checksum: 10b4e5aec0dd18a690bc2ba07fe95f0d414f2904574dda930efd050b113629469d2c01e1d849b129ce575e84bbf89b53ffbeee55c51716c4a78e36be463c1fff
   languageName: node
   linkType: hard
 
-"@react-native-firebase/auth@npm:^18.5.0":
-  version: 18.5.0
-  resolution: "@react-native-firebase/auth@npm:18.5.0"
+"@react-native-firebase/auth@npm:^18.8.0":
+  version: 18.8.0
+  resolution: "@react-native-firebase/auth@npm:18.8.0"
   dependencies:
     plist: ^3.1.0
   peerDependencies:
-    "@react-native-firebase/app": 18.5.0
+    "@react-native-firebase/app": 18.8.0
     expo: ">=47.0.0"
   peerDependenciesMeta:
     expo:
       optional: true
-  checksum: 32df9f93b3b0d0b081a9767521b7019bb9edb896fda6934683a3319bf18cfd8c951b117613fb8ce25f7cf54e5b0ad81a2a75d83469986743e81268fbd51cb806
+  checksum: d900d6c1ec515f1f51f6e8053c2cfe2f19a2d7cefc449773082f2ab0e58e12311364b65a68e0bd3f3d817cf6dab19df7d336c17d4a895ef9ccc296c955b7ed5e
   languageName: node
   linkType: hard
 
-"@react-native-firebase/firestore@npm:^18.5.0":
-  version: 18.5.0
-  resolution: "@react-native-firebase/firestore@npm:18.5.0"
+"@react-native-firebase/firestore@npm:^18.8.0":
+  version: 18.8.0
+  resolution: "@react-native-firebase/firestore@npm:18.8.0"
   peerDependencies:
-    "@react-native-firebase/app": 18.5.0
-  checksum: 5de39d5aecae58553e571f0779704d6258d823236acb2f49ebcf466c463f73f949b654f23ba0ac622f71b5f79ac015947f319e6d0b5e36be20000093e2176d6f
+    "@react-native-firebase/app": 18.8.0
+  checksum: 084d3947a8478aca0f509f413edb3d0f33c2d7f9db0afd19f762d6a937db9ec53c7fde98556a0467d3c2eb474fcb30ffbc92301fc2f1446d75a63d79cb3be8c4
+  languageName: node
+  linkType: hard
+
+"@react-native-firebase/storage@npm:^18.8.0":
+  version: 18.8.0
+  resolution: "@react-native-firebase/storage@npm:18.8.0"
+  peerDependencies:
+    "@react-native-firebase/app": 18.8.0
+  checksum: b94a8c7373a446c726780858f56fea8192be00458ef49be4e6dfa565b923e03bebeea31bdffca32bac4e44672ed3bfe68bf60369e30fe2406a2cc7ceda1bb413
   languageName: node
   linkType: hard
 
@@ -3185,9 +3194,10 @@ __metadata:
     "@babel/preset-env": ^7.20.0
     "@babel/runtime": ^7.20.0
     "@gorhom/bottom-sheet": ^4
-    "@react-native-firebase/app": ^18.5.0
-    "@react-native-firebase/auth": ^18.5.0
-    "@react-native-firebase/firestore": ^18.5.0
+    "@react-native-firebase/app": ^18.8.0
+    "@react-native-firebase/auth": ^18.8.0
+    "@react-native-firebase/firestore": ^18.8.0
+    "@react-native-firebase/storage": ^18.8.0
     "@react-native-google-signin/google-signin": ^10.0.1
     "@react-native/eslint-config": ^0.72.2
     "@react-native/metro-config": ^0.72.11
@@ -8374,7 +8384,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"opencollective-postinstall@npm:^2.0.1":
+"opencollective-postinstall@npm:^2.0.3":
   version: 2.0.3
   resolution: "opencollective-postinstall@npm:2.0.3"
   bin:

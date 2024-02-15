@@ -12,7 +12,7 @@ export const RecipePreparationMethodAddListItem: FC<
 > = ({ style, item, index, ...props }) => {
   return (
     <View {...props} style={[style, styles.container]}>
-      <Text text={`${index + 1} - ${item}`} size="sm" />
+      <Text text={`${index + 1} - ${item}`} size="xs" />
     </View>
   );
 };
