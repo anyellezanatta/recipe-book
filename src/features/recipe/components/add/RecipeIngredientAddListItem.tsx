@@ -1,7 +1,8 @@
 import { FC } from "react";
 import { StyleSheet, View, ViewProps } from "react-native";
-import { Ingredient } from "@/models";
+
 import { Text } from "@/components/Text";
+import { Ingredient } from "@/models";
 
 export type RecipeIngredientAddListItemProps = ViewProps & {
   item: Ingredient;

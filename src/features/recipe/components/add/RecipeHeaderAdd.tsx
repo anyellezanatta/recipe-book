@@ -1,10 +1,11 @@
 import { StyleSheet, View } from "react-native";
+
 import { DebouncedInput } from "@/components/DebouncedInput";
 import { ImagePicker } from "@/components/ImagePicker";
-import { Text } from "@/components/Text";
-import { useRecipeAdd } from "../../hooks/useRecipeAdd";
-import { spacing } from "@/theme/spacing";
 import { SegmentedControl } from "@/components/SegmentedControl";
+import { Text } from "@/components/Text";
+import { useRecipeAdd } from "@/features/recipe/hooks/useRecipeAdd";
+import { spacing } from "@/theme/spacing";
 
 export const RecipeHeaderAdd = () => {
   const { setRecipeValue } = useRecipeAdd();
@@ -50,7 +51,7 @@ export const RecipeHeaderAdd = () => {
           placeholder="Time in minutes"
           keyboardType="numeric"
           onChangeValue={(value) => {
-            setRecipeValue!("preparationTime", Number.parseInt(value));
+            setRecipeValue!("preparationTime", Number.parseInt(value, 10));
           }}
         />
       </View>
@@ -61,7 +62,7 @@ export const RecipeHeaderAdd = () => {
           placeholder="Yields"
           keyboardType="numeric"
           onChangeValue={(value) => {
-            setRecipeValue!("yields", Number.parseInt(value));
+            setRecipeValue!("yields", Number.parseInt(value, 10));
           }}
         />
       </View>

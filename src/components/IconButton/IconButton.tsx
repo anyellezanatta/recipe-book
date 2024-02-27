@@ -1,7 +1,8 @@
 import { FC } from "react";
 import { Pressable } from "react-native";
+
 import { Icon, IconProps, IconSize } from "@/components/Icon";
-import { Text } from "../Text";
+import { Text } from "@/components/Text";
 
 export type IconButtonProps = Omit<IconProps, "name" | "size"> & {
   icon: IconProps["name"];

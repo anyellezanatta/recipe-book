@@ -1,11 +1,14 @@
-import { GestureHandlerRootView } from "react-native-gesture-handler";
-import { AppNavigator } from "@/navigators/AppNavigator";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { StyleSheet } from "react-native";
 
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 import {
   SafeAreaProvider,
   initialWindowMetrics,
 } from "react-native-safe-area-context";
+
+import { AppNavigator } from "@/navigators/AppNavigator";
+
 import { ThemeProvider } from "./contexts/theme/ThemeProvider";
 
 // Create a client
@@ -20,7 +23,7 @@ const queryClient = new QueryClient({
 export const App = () => {
   return (
     <ThemeProvider>
-      <GestureHandlerRootView style={{ flex: 1 }}>
+      <GestureHandlerRootView style={styles.container}>
         <SafeAreaProvider initialMetrics={initialWindowMetrics}>
           <QueryClientProvider client={queryClient}>
             <AppNavigator />
@@ -30,3 +33,9 @@ export const App = () => {
     </ThemeProvider>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+});

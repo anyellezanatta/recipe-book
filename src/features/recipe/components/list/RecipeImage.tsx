@@ -1,11 +1,13 @@
 import { FC } from "react";
 import { StyleSheet, View } from "react-native";
+
+import { minutesToHours } from "date-fns";
+
+import { Icon } from "@/components/Icon";
 import { Image, ImageProps } from "@/components/Image";
 import { Text } from "@/components/Text";
-import { minutesToHours } from "date-fns";
-import { Icon } from "@/components/Icon";
-import { spacing } from "@/theme/spacing";
 import { useAppTheme } from "@/hooks/useAppTheme";
+import { spacing } from "@/theme/spacing";
 
 export type RecipeImageProps = Omit<ImageProps, "source"> & {
   url: string;

@@ -1,8 +1,10 @@
 import { FC } from "react";
 import { StyleSheet, View, ViewProps } from "react-native";
-import { useRecipe } from "@/features/recipe/hooks/useRecipe";
+
 import { Text } from "@/components/Text";
+import { useRecipe } from "@/features/recipe/hooks/useRecipe";
 import { spacing } from "@/theme/spacing";
+
 import { RecipeIngredient } from "./RecipeIngredient";
 
 export type RecipeIngredientsProps = ViewProps;

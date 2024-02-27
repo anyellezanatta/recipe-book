@@ -1,8 +1,9 @@
+import auth from "@react-native-firebase/auth";
 import firestore, {
   FirebaseFirestoreTypes,
 } from "@react-native-firebase/firestore";
-import auth from "@react-native-firebase/auth";
 import storage from "@react-native-firebase/storage";
+
 import { WithKey } from "./firebaseClient.types";
 
 const firebaseClient = () => {

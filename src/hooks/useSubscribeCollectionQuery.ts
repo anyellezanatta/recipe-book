@@ -1,7 +1,9 @@
 import { useEffect } from "react";
+
+import { useQuery, useQueryClient } from "@tanstack/react-query";
+
 import { FirebaseClient } from "@/services/firebase/firebaseClient";
 import { WithKey } from "@/services/firebase/firebaseClient.types";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
 
 export const useSubscribeCollectionQuery = <TModel, TDoc extends WithKey>(
   collectionName: string,

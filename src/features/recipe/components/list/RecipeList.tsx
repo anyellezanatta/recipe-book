@@ -1,16 +1,19 @@
 import { useState } from "react";
 import { FlatList, ListRenderItemInfo, StyleSheet, View } from "react-native";
+
 import { useNavigation } from "@react-navigation/native";
-import { Recipe } from "@/models";
-import { useSubscribeCollectionQuery } from "@/hooks/useSubscribeCollectionQuery";
+
+import { DebouncedSearchInput } from "@/components/DebouncedSearchInput";
 import { FullScreenLoader } from "@/components/FullScreenLoader/FullScreenLoader";
+import { Separator } from "@/components/Separator";
+import { Text } from "@/components/Text";
+import { recipeDocMapper } from "@/features/recipe/mappers/recipeDocMapper";
+import { useSubscribeCollectionQuery } from "@/hooks/useSubscribeCollectionQuery";
+import { Recipe } from "@/models";
 import { RecipeDoc } from "@/services/firebase/firebaseClient.types";
 import { spacing } from "@/theme/spacing";
-import { Separator } from "@/components/Separator";
-import { recipeDocMapper } from "@/features/recipe/mappers/recipeDocMapper";
-import { DebouncedSearchInput } from "@/components/DebouncedSearchInput";
+
 import { RecipeCell } from "./RecipeCell";
-import { Text } from "@/components/Text";
 
 export const RecipeList = () => {
   const navigation = useNavigation();

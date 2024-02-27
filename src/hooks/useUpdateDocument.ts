@@ -1,5 +1,6 @@
-import { FirebaseClient } from "@/services/firebase/firebaseClient";
 import { useMutation } from "@tanstack/react-query";
+
+import { FirebaseClient } from "@/services/firebase/firebaseClient";
 
 export const useUpdateDocument = (
   collectionName: string,

@@ -1,4 +1,3 @@
-import { spacing } from "@/theme/spacing";
 import { FC } from "react";
 import {
   ImageProps as RNImageProps,
@@ -7,6 +6,8 @@ import {
   StyleSheet,
   ImageStyle,
 } from "react-native";
+
+import { spacing } from "@/theme/spacing";
 
 export type UserImageProps = RNImageProps;
 export const UserImage: FC<UserImageProps> = ({

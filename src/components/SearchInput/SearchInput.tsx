@@ -7,9 +7,10 @@ import {
   View,
   ViewStyle,
 } from "react-native";
+
 import { Icon } from "@/components/Icon";
-import { spacing } from "@/theme/spacing";
 import { useAppTheme } from "@/hooks/useAppTheme";
+import { spacing } from "@/theme/spacing";
 
 export type SearchInputProps = TextInputProps & {
   style?: StyleProp<ViewStyle>;

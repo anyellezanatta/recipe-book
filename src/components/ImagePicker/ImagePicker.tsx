@@ -1,12 +1,13 @@
 import { FC } from "react";
 import { StyleSheet, View, ViewProps } from "react-native";
-import { Image } from "../Image/Image";
-import { Text } from "../Text";
-import { usePickImage } from "@/hooks/usePickImage";
+
+import { IconButton } from "@/components/IconButton";
+import { Image } from "@/components/Image";
+import { Text } from "@/components/Text";
 import { useAppTheme } from "@/hooks/useAppTheme";
-import { spacing } from "@/theme/spacing";
-import { IconButton } from "../IconButton";
+import { usePickImage } from "@/hooks/usePickImage";
 import { FirebaseClient } from "@/services/firebase/firebaseClient";
+import { spacing } from "@/theme/spacing";
 
 export type ImagePickerProps = ViewProps & {
   onSetUrl: (url: string) => void;
@@ -22,7 +23,7 @@ export const ImagePicker: FC<ImagePickerProps> = ({ onSetUrl, ...props }) => {
     if (pickImage.url) {
       const url = FirebaseClient.uploadImage(pickImage.url);
       console.log(url);
-      // onSetUrl(url);
+      onSetUrl(url);
     }
   };
 

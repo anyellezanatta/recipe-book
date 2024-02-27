@@ -1,4 +1,5 @@
 import { FC, useEffect, useState } from "react";
+
 import { SearchInput, SearchInputProps } from "@/components/SearchInput";
 import { useDebounce } from "@/hooks/useDebounce";
 

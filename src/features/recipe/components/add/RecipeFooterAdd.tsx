@@ -1,6 +1,7 @@
 import { StyleSheet } from "react-native";
+
 import { IconButton } from "@/components/IconButton";
-import { useRecipeAdd } from "../../hooks/useRecipeAdd";
+import { useRecipeAdd } from "@/features/recipe/hooks/useRecipeAdd";
 
 export const RecipeFooterAdd = ({ onPress }: { onPress: () => void }) => {
   const { saveRecipe } = useRecipeAdd();

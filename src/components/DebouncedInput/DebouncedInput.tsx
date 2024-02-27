@@ -1,5 +1,6 @@
 import { FC, useEffect, useState } from "react";
 import { TextInput, TextInputProps } from "react-native";
+
 import { useDebounce } from "@/hooks/useDebounce";
 
 export type DebouncedInputProps = Omit<

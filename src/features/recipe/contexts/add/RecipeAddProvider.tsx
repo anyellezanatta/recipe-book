@@ -1,8 +1,11 @@
 import { ReactNode, useCallback, useState } from "react";
-import { Ingredient, Recipe } from "@/models";
-import { RecipeAddContext } from "./RecipeAddContext";
-import { useAddDocument } from "@/hooks/useAddDocument";
+
 import auth from "@react-native-firebase/auth";
+
+import { useAddDocument } from "@/hooks/useAddDocument";
+import { Ingredient, Recipe } from "@/models";
+
+import { RecipeAddContext } from "./RecipeAddContext";
 
 type RecipeAddProviderProps = {
   recipe?: Partial<Recipe>;

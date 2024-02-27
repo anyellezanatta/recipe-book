@@ -1,14 +1,15 @@
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { RecipeScreen } from "@/screens/RecipeScreen";
-import { useAppTheme } from "@/hooks/useAppTheme";
-import { DetailsScreen } from "@/screens/DetailsScreen";
+
+import { Icon } from "@/components/Icon";
 import { GoogleSignInButton } from "@/features/authentication/components/GoogleSignInButton";
 import { useAuth } from "@/features/authentication/hooks/useAuth";
+import { useAppTheme } from "@/hooks/useAppTheme";
 import { AddScreen } from "@/screens/AddScreen";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Icon } from "@/components/Icon";
+import { DetailsScreen } from "@/screens/DetailsScreen";
 import { FavoritesScreen } from "@/screens/FavoritesScreen";
+import { RecipeScreen } from "@/screens/RecipeScreen";
 import { UserScreen } from "@/screens/UserScreen";
 
 export type AppStackParamList = {
@@ -38,6 +39,7 @@ export const Tabs = () => {
           tabBarLabel: "Recipes",
           tabBarLabelPosition: "beside-icon",
           tabBarActiveBackgroundColor: "#f0f1f1",
+          // eslint-disable-next-line react/no-unstable-nested-components
           tabBarIcon: () => <Icon name={"fast-food-outline"} />,
         }}
       />
@@ -48,6 +50,7 @@ export const Tabs = () => {
           tabBarLabel: "Favorites",
           tabBarLabelPosition: "beside-icon",
           tabBarActiveBackgroundColor: "#f0f1f1",
+          // eslint-disable-next-line react/no-unstable-nested-components
           tabBarIcon: () => <Icon name={"heart-outline"} />,
         }}
       />
@@ -58,6 +61,7 @@ export const Tabs = () => {
           tabBarLabel: "User",
           tabBarLabelPosition: "beside-icon",
           tabBarActiveBackgroundColor: "#f0f1f1",
+          // eslint-disable-next-line react/no-unstable-nested-components
           tabBarIcon: () => <Icon name={"person-outline"} />,
         }}
       />

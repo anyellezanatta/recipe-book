@@ -1,11 +1,12 @@
+import { FC } from "react";
 import {
   ButtonProps,
   StyleSheet,
   TouchableOpacity,
   ViewProps,
 } from "react-native";
-import { Icon } from "../Icon";
-import { FC } from "react";
+
+import { Icon } from "@/components/Icon";
 import { spacing } from "@/theme/spacing";
 
 export type RoundButtonProps = Omit<ButtonProps, "title"> & ViewProps;

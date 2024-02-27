@@ -1,5 +1,3 @@
-import { useAppTheme } from "@/hooks/useAppTheme";
-import { spacing } from "@/theme/spacing";
 import { FC, useEffect, useMemo, useState } from "react";
 import {
   Animated,
@@ -8,7 +6,10 @@ import {
   TouchableOpacity,
   ViewProps,
 } from "react-native";
-import { Text } from "../Text";
+
+import { Text } from "@/components/Text";
+import { useAppTheme } from "@/hooks/useAppTheme";
+import { spacing } from "@/theme/spacing";
 
 export type SegmentedControlProps = ViewProps & {
   tabs: string[];
@@ -68,7 +69,7 @@ export const SegmentedControl: FC<SegmentedControlProps> = ({
             <Text
               style={[
                 styles.textStyles,
-                currentIndex === index && { fontWeight: "bold" },
+                currentIndex === index && styles.textBold,
               ]}
               size={"sm"}>
               {tab}
@@ -102,5 +103,8 @@ const styles = StyleSheet.create({
   },
   textStyles: {
     textAlign: "center",
+  },
+  textBold: {
+    fontWeight: "bold",
   },
 });

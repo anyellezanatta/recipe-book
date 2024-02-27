@@ -1,13 +1,15 @@
 import { FC } from "react";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
-import { Recipe } from "@/models";
-import { spacing } from "@/theme/spacing";
+
 import { Text } from "@/components/Text/Text";
 import { ToggleIconButton } from "@/components/ToggleButton";
-import { useFavoriteRecipe } from "@/features/recipe/hooks/useFavoriteRecipe";
-import { useAuth } from "@/features/authentication/hooks/useAuth";
 import { UserImage } from "@/components/UserImage";
+import { useAuth } from "@/features/authentication/hooks/useAuth";
+import { useFavoriteRecipe } from "@/features/recipe/hooks/useFavoriteRecipe";
 import { useAppTheme } from "@/hooks/useAppTheme";
+import { Recipe } from "@/models";
+import { spacing } from "@/theme/spacing";
+
 import { RecipeImage } from "./RecipeImage";
 
 export const RecipeCell: FC<{

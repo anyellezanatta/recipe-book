@@ -1,5 +1,6 @@
-import { Text } from "@/components/Text";
 import { Screen } from "react-native-screens";
+
+import { Text } from "@/components/Text";
 
 export const FavoritesScreen = () => {
   return (

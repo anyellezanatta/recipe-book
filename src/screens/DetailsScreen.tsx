@@ -1,17 +1,19 @@
 import { StyleSheet } from "react-native";
+
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
+
+import { FullScreenLoader } from "@/components/FullScreenLoader/FullScreenLoader";
+import { Screen } from "@/components/Screen";
+import { RecipeHeader } from "@/features/recipe/components/detail/RecipeHeader";
+import { RecipeIngredients } from "@/features/recipe/components/detail/RecipeIngredients";
+import { RecipePreparationMethods } from "@/features/recipe/components/detail/RecipePreparationMethods";
+import { RecipeProvider } from "@/features/recipe/contexts/detail/RecipeProvider";
+import { recipeDocMapper } from "@/features/recipe/mappers/recipeDocMapper";
 import { useDocumentQuery } from "@/hooks/useDocumentQuery";
 import { Recipe } from "@/models";
 import { AppStackParamList } from "@/navigators/AppNavigator";
 import { RecipeDoc } from "@/services/firebase/firebaseClient.types";
 import { spacing } from "@/theme/spacing";
-import { FullScreenLoader } from "@/components/FullScreenLoader/FullScreenLoader";
-import { RecipeProvider } from "@/features/recipe/contexts/detail/RecipeProvider";
-import { recipeDocMapper } from "@/features/recipe/mappers/recipeDocMapper";
-import { RecipeHeader } from "@/features/recipe/components/detail/RecipeHeader";
-import { RecipeIngredients } from "@/features/recipe/components/detail/RecipeIngredients";
-import { RecipePreparationMethods } from "@/features/recipe/components/detail/RecipePreparationMethods";
-import { Screen } from "@/components/Screen";
 
 export const DetailsScreen = ({
   route,

@@ -1,5 +1,6 @@
 import { FC } from "react";
 import { StyleProp, View, ViewProps, ViewStyle } from "react-native";
+
 import { spacing } from "@/theme/spacing";
 
 type SeparatorProps = ViewProps & {

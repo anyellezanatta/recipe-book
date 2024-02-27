@@ -1,9 +1,11 @@
 import { FC, useState } from "react";
 import { StyleSheet, TextInput, View, ViewProps } from "react-native";
-import { IconButton } from "@/components/IconButton";
-import { useAppTheme } from "@/hooks/useAppTheme";
+
 import { useBottomSheetModal } from "@gorhom/bottom-sheet";
-import { useRecipeAdd } from "../../hooks/useRecipeAdd";
+
+import { IconButton } from "@/components/IconButton";
+import { useRecipeAdd } from "@/features/recipe/hooks/useRecipeAdd";
+import { useAppTheme } from "@/hooks/useAppTheme";
 
 export type RecipePreparationMethodModalProps = ViewProps;
 
