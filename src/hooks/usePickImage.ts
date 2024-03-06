@@ -1,23 +1,29 @@
-import { useState } from "react";
+import { ImagePickerResponse } from "react-native-image-picker";
 
 import { ImagePickerClient } from "@/services/imagePicker/imagePickerClient";
 
 export const usePickImage = () => {
-  const [url, setUrl] = useState<string | undefined>("");
-
-  const launchImageLibrary = () => {
-    ImagePickerClient.launchImageLibraryPhone(({ assets }) => {
-      setUrl(assets![0]?.uri);
-    });
+  const launchImageLibrary = (callbackLibrary: (uri: string) => void) => {
+    ImagePickerClient.launchImageLibraryPhone(
+      ({ assets }: ImagePickerResponse) => {
+        if (assets) {
+          const { uri, type } = assets[0]!;
+          console.log(type);
+          callbackLibrary(uri!);
+        }
+      },
+    );
   };
 
   const launchCamera = () => {
     ImagePickerClient.launchCameraPhone(({ assets }) => {
       if (assets) {
-        setUrl(assets[0]?.uri);
+        // const { uri, fileName } = assets[0]!;
+        // setUrl(uri);
+        // setImageName(fileName);
       }
     });
   };
 
-  return { url, launchImageLibrary, launchCamera };
+  return { launchImageLibrary, launchCamera };
 };

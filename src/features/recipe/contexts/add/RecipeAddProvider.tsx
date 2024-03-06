@@ -71,7 +71,6 @@ export const RecipeAddProvider = ({ children }: RecipeAddProviderProps) => {
   const addDocument = useAddDocument<Recipe>("recipes");
 
   const saveRecipe = () => {
-    console.log(currentRecipe);
     return addDocument.mutate(currentRecipe as Recipe);
   };
 

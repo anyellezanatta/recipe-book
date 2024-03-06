@@ -1,11 +1,12 @@
 import { useCallback, useRef } from "react";
-import { ScrollView, StyleSheet, View } from "react-native";
+import { ScrollView, StyleSheet } from "react-native";
 
 import {
   BottomSheetBackdrop,
   BottomSheetModal,
   BottomSheetModalProvider,
 } from "@gorhom/bottom-sheet";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
 import { Screen } from "@/components/Screen";
 import { RecipeAddList } from "@/features/recipe/components/add/RecipeAddList";
@@ -14,9 +15,12 @@ import { RecipeHeaderAdd } from "@/features/recipe/components/add/RecipeHeaderAd
 import { RecipeIngredientModal } from "@/features/recipe/components/add/RecipeIngredientModal";
 import { RecipePreparationMethodModal } from "@/features/recipe/components/add/RecipePreparationMethodModal";
 import { RecipeAddProvider } from "@/features/recipe/contexts/add/RecipeAddProvider";
+import { AppStackParamList } from "@/navigators/AppNavigator";
 import { spacing } from "@/theme/spacing";
 
-export const AddScreen = () => {
+type AddScreenProps = NativeStackScreenProps<AppStackParamList, "RecipeAdd">;
+
+export const AddScreen = ({ navigation }: AddScreenProps) => {
   const refPreparationMethod = useRef<BottomSheetModal>(null);
   const refIngredient = useRef<BottomSheetModal>(null);
   const snapPoints = ["30%"];
@@ -46,20 +50,22 @@ export const AddScreen = () => {
     <Screen safeAreaEdges={["bottom"]}>
       <RecipeAddProvider>
         <BottomSheetModalProvider>
-          <View style={styles.container}>
-            <ScrollView>
-              <RecipeHeaderAdd />
-              <RecipeAddList
-                onAddPress={onExpandModalIngredient}
-                listType={"ingredients"}
-              />
-              <RecipeAddList
-                onAddPress={onExpandModalPreparationMethod}
-                listType={"preparationMethods"}
-              />
-            </ScrollView>
-            <RecipeFooterAdd onPress={() => {}} />
-          </View>
+          <ScrollView style={styles.container}>
+            <RecipeHeaderAdd />
+            <RecipeAddList
+              onAddPress={onExpandModalIngredient}
+              listType={"ingredients"}
+            />
+            <RecipeAddList
+              onAddPress={onExpandModalPreparationMethod}
+              listType={"preparationMethods"}
+            />
+          </ScrollView>
+          <RecipeFooterAdd
+            onPress={() => {
+              navigation.goBack();
+            }}
+          />
 
           <BottomSheetModal
             ref={refPreparationMethod}
@@ -83,5 +89,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: spacing.medium,
+    paddingBottom: spacing.large,
   },
 });

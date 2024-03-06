@@ -116,18 +116,24 @@ const firebaseClient = () => {
     await firestore().collection(collectionName).doc(documentId).delete();
   };
 
-  const uploadImage = (url: string) => {
-    //const reference =
-    storage().ref(url);
-    // try {
-    //   // const task = await reference.putFile(url);
-    //   // return task.metadata.fullPath;
-    // } catch (error) {
-    //   console.log(error);
-    // }
-    return "";
+  const uploadImage = async (url: string, imageName: string) => {
+    const reference = storage().ref(`recipes/Images/${imageName}`);
+    try {
+      const task = await reference.putFile(url);
+      return task.metadata.fullPath;
+    } catch (error) {
+      console.log(error);
+    }
   };
 
+  const downloadUrl = async (url: string) => {
+    try {
+      const reference = storage().ref(url);
+      return await reference.getDownloadURL();
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return {
     subscribeToCollection,
     fetchCollection,
@@ -136,6 +142,7 @@ const firebaseClient = () => {
     updateDocument,
     removeDocument,
     uploadImage,
+    downloadUrl,
   };
 };
 

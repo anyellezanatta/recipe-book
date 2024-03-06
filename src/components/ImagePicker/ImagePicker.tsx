@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 import { StyleSheet, View, ViewProps } from "react-native";
 
 import { IconButton } from "@/components/IconButton";
@@ -14,24 +14,68 @@ export type ImagePickerProps = ViewProps & {
 };
 
 export const ImagePicker: FC<ImagePickerProps> = ({ onSetUrl, ...props }) => {
+  const [url, setUrl] = useState<string | undefined>();
+  const [urlDownload, setUrlDownload] = useState<string | undefined>();
   const pickImage = usePickImage();
   const { colors } = useAppTheme();
 
-  const pickImagePress = () => {
-    pickImage.launchImageLibrary();
+  const generateUUID = () => {
+    // Public Domain/MIT
+    var d = new Date().getTime(); //Timestamp
+    var d2 =
+      (typeof performance !== "undefined" &&
+        performance.now &&
+        performance.now() * 1000) ||
+      0; //Time in microseconds since page-load or 0 if unsupported
+    return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(
+      /[xy]/g,
+      function (c) {
+        var r = Math.random() * 16; //random number between 0 and 16
+        if (d > 0) {
+          //Use timestamp until depleted
+          r = (d + r) % 16 | 0;
+          d = Math.floor(d / 16);
+        } else {
+          //Use microseconds since page-load if supported
+          r = (d2 + r) % 16 | 0;
+          d2 = Math.floor(d2 / 16);
+        }
+        return (c === "x" ? r : (r & 0x3) | 0x8).toString(16);
+      },
+    );
+  };
 
-    if (pickImage.url) {
-      const url = FirebaseClient.uploadImage(pickImage.url);
-      console.log(url);
-      onSetUrl(url);
-    }
+  useEffect(() => {
+    const getUrl = async () => {
+      if (url) {
+        const urlTemp = await FirebaseClient.downloadUrl(url);
+
+        setUrlDownload(urlTemp);
+        onSetUrl(urlTemp!);
+      }
+    };
+
+    getUrl();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [url]);
+
+  const pickImagePress = async () => {
+    pickImage.launchImageLibrary(async (uri) => {
+      const uploadedUrl = await FirebaseClient.uploadImage(
+        uri,
+        `${generateUUID()}.jpg`,
+      );
+      if (uploadedUrl) {
+        setUrl(uploadedUrl);
+      }
+    });
   };
 
   return (
     <View {...props}>
       <IconButton icon="add" onPress={pickImagePress} style={styles.buttom} />
-      {pickImage.url ? (
-        <Image source={{ uri: pickImage.url }} />
+      {url ? (
+        <Image source={{ uri: urlDownload }} />
       ) : (
         <View
           style={[
