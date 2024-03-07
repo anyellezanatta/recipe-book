@@ -1,11 +1,12 @@
 import { FC } from "react";
 import { StyleSheet, View, ViewProps } from "react-native";
-import Config from "react-native-config";
+
 import auth from "@react-native-firebase/auth";
 import {
   GoogleSignin,
   GoogleSigninButton,
 } from "@react-native-google-signin/google-signin";
+import Config from "react-native-config";
 
 GoogleSignin.configure({
   webClientId: Config.WEB_CLIENT_ID,

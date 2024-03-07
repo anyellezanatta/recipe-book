@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+
 import auth, { FirebaseAuthTypes } from "@react-native-firebase/auth";
 
 export type authStatus = "initializing" | "initialized";

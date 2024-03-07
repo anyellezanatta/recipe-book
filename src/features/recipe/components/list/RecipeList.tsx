@@ -1,14 +1,18 @@
 import { useState } from "react";
 import { FlatList, ListRenderItemInfo, StyleSheet, View } from "react-native";
+
 import { useNavigation } from "@react-navigation/native";
-import { Recipe } from "@/models";
-import { useSubscribeCollectionQuery } from "@/hooks/useSubscribeCollectionQuery";
+
+import { DebouncedSearchInput } from "@/components/DebouncedSearchInput";
 import { FullScreenLoader } from "@/components/FullScreenLoader/FullScreenLoader";
+import { Separator } from "@/components/Separator";
+import { Text } from "@/components/Text";
+import { recipeDocMapper } from "@/features/recipe/mappers/recipeDocMapper";
+import { useSubscribeCollectionQuery } from "@/hooks/useSubscribeCollectionQuery";
+import { Recipe } from "@/models";
 import { RecipeDoc } from "@/services/firebase/firebaseClient.types";
 import { spacing } from "@/theme/spacing";
-import { Separator } from "@/components/Separator";
-import { recipeDocMapper } from "@/features/recipe/mappers/recipeDocMapper";
-import { DebouncedSearchInput } from "@/components/DebouncedSearchInput";
+
 import { RecipeCell } from "./RecipeCell";
 
 export const RecipeList = () => {
@@ -37,8 +41,14 @@ export const RecipeList = () => {
   return (
     <View style={styles.container}>
       <DebouncedSearchInput
-        style={{ marginHorizontal: spacing.medium }}
+        style={styles.inputSearch}
         onSearch={setSearchTerm}
+        placeholder={"Search for a recipe"}
+      />
+      <Text
+        text="My Recipes"
+        size="sm"
+        style={{ marginHorizontal: spacing.large }}
       />
       <FlatList
         data={data}
@@ -56,6 +66,11 @@ export const RecipeList = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    gap: spacing.medium,
+    gap: spacing.extraLarge,
+    paddingTop: spacing.large,
+  },
+  inputSearch: {
+    marginHorizontal: spacing.medium,
+    height: 50,
   },
 });

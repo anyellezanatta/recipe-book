@@ -1,5 +1,3 @@
-import { Text } from "@/components/Text";
-import { useAppTheme } from "@/hooks/useAppTheme";
 import { FC } from "react";
 import {
   StyleProp,
@@ -8,6 +6,9 @@ import {
   ViewProps,
   ViewStyle,
 } from "react-native";
+
+import { Text } from "@/components/Text";
+import { useAppTheme } from "@/hooks/useAppTheme";
 
 export type RecipeIngredientProps = ViewProps & {
   name: string;

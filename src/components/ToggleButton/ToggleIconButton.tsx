@@ -1,5 +1,6 @@
 import { FC } from "react";
 import { Pressable } from "react-native";
+
 import { Icon, IconProps, IconSize, IconName } from "@/components/Icon";
 
 export type ToggleIconButtonProps = Omit<IconProps, "name" | "size"> & {

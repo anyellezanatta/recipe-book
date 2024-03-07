@@ -10,10 +10,12 @@ import {
   ViewProps,
   ViewStyle,
 } from "react-native";
+
 import {
   SafeAreaView,
   SafeAreaViewProps,
 } from "react-native-safe-area-context";
+
 import { StatusBar } from "@/components/StatusBar";
 
 type ScrollableScreenProps = { preset?: "scrollable" } & ScrollViewProps;

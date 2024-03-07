@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import { useColorScheme } from "react-native";
+
 import { ThemeContext } from "./ThemeContext";
 
 type ThemeProviderProps = {

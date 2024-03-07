@@ -1,6 +1,7 @@
-import { useAppTheme } from "@/hooks/useAppTheme";
 import { FC } from "react";
 import { Platform, StatusBar as RNStatusBar } from "react-native";
+
+import { useAppTheme } from "@/hooks/useAppTheme";
 
 export const StatusBar: FC = () => {
   const { dark } = useAppTheme();

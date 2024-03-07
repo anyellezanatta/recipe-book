@@ -1,5 +1,6 @@
 import { FC } from "react";
 import { StyleSheet, View } from "react-native";
+
 import { Icon, IconProps } from "@/components/Icon";
 import { Text, TextProps } from "@/components/Text";
 import { useAppTheme } from "@/hooks/useAppTheme";
