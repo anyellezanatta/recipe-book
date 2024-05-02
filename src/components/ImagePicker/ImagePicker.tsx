@@ -1,6 +1,9 @@
 import { FC, useEffect, useState } from "react";
 import { StyleSheet, View, ViewProps } from "react-native";
 
+import "react-native-get-random-values";
+import { v4 as uuidv4 } from "uuid";
+
 import { IconButton } from "@/components/IconButton";
 import { Image } from "@/components/Image";
 import { Text } from "@/components/Text";
@@ -19,32 +22,6 @@ export const ImagePicker: FC<ImagePickerProps> = ({ onSetUrl, ...props }) => {
   const pickImage = usePickImage();
   const { colors } = useAppTheme();
 
-  const generateUUID = () => {
-    // Public Domain/MIT
-    var d = new Date().getTime(); //Timestamp
-    var d2 =
-      (typeof performance !== "undefined" &&
-        performance.now &&
-        performance.now() * 1000) ||
-      0; //Time in microseconds since page-load or 0 if unsupported
-    return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(
-      /[xy]/g,
-      function (c) {
-        var r = Math.random() * 16; //random number between 0 and 16
-        if (d > 0) {
-          //Use timestamp until depleted
-          r = (d + r) % 16 | 0;
-          d = Math.floor(d / 16);
-        } else {
-          //Use microseconds since page-load if supported
-          r = (d2 + r) % 16 | 0;
-          d2 = Math.floor(d2 / 16);
-        }
-        return (c === "x" ? r : (r & 0x3) | 0x8).toString(16);
-      },
-    );
-  };
-
   useEffect(() => {
     const getUrl = async () => {
       if (url) {
@@ -61,10 +38,8 @@ export const ImagePicker: FC<ImagePickerProps> = ({ onSetUrl, ...props }) => {
 
   const pickImagePress = async () => {
     pickImage.launchImageLibrary(async (uri) => {
-      const uploadedUrl = await FirebaseClient.uploadImage(
-        uri,
-        `${generateUUID()}.jpg`,
-      );
+      const uuid = uuidv4();
+      const uploadedUrl = await FirebaseClient.uploadImage(uri, `${uuid}.jpg`);
       if (uploadedUrl) {
         setUrl(uploadedUrl);
       }
@@ -96,5 +71,7 @@ const styles = StyleSheet.create({
     height: 180,
     borderRadius: spacing.medium,
   },
-  buttom: { alignSelf: "flex-end" },
+  buttom: {
+    alignSelf: "flex-end",
+  },
 });

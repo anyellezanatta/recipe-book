@@ -3,6 +3,7 @@ import { Pressable } from "react-native";
 
 import { Icon, IconProps, IconSize } from "@/components/Icon";
 import { Text } from "@/components/Text";
+import { spacing } from "@/theme/spacing";
 
 export type IconButtonProps = Omit<IconProps, "name" | "size"> & {
   icon: IconProps["name"];
@@ -27,8 +28,8 @@ export const IconButton: FC<IconButtonProps> = ({
       {...props}
       style={({ pressed }) => [
         { opacity: pressed ? 0.5 : 1.0 },
-        style,
         {
+          gap: spacing.extraSmall,
           flexDirection:
             textPosition === "right"
               ? "row"
@@ -36,6 +37,7 @@ export const IconButton: FC<IconButtonProps> = ({
               ? "row-reverse"
               : "column",
         },
+        style,
       ]}>
       <Icon name={icon} size={size} />
       {text ? <Text text={text} size="sm" /> : null}

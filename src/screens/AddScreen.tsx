@@ -11,7 +11,7 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { Screen } from "@/components/Screen";
 import { RecipeAddList } from "@/features/recipe/components/add/RecipeAddList";
 import { RecipeFooterAdd } from "@/features/recipe/components/add/RecipeFooterAdd";
-import { RecipeHeaderAdd } from "@/features/recipe/components/add/RecipeHeaderAdd";
+import { RecipeAdd } from "@/features/recipe/components/add/RecipeAdd";
 import { RecipeIngredientModal } from "@/features/recipe/components/add/RecipeIngredientModal";
 import { RecipePreparationMethodModal } from "@/features/recipe/components/add/RecipePreparationMethodModal";
 import { RecipeAddProvider } from "@/features/recipe/contexts/add/RecipeAddProvider";
@@ -51,7 +51,7 @@ export const AddScreen = ({ navigation }: AddScreenProps) => {
       <RecipeAddProvider>
         <BottomSheetModalProvider>
           <ScrollView style={styles.container}>
-            <RecipeHeaderAdd />
+            <RecipeAdd />
             <RecipeAddList
               onAddPress={onExpandModalIngredient}
               listType={"ingredients"}

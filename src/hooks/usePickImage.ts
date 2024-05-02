@@ -15,15 +15,5 @@ export const usePickImage = () => {
     );
   };
 
-  const launchCamera = () => {
-    ImagePickerClient.launchCameraPhone(({ assets }) => {
-      if (assets) {
-        // const { uri, fileName } = assets[0]!;
-        // setUrl(uri);
-        // setImageName(fileName);
-      }
-    });
-  };
-
-  return { launchImageLibrary, launchCamera };
+  return { launchImageLibrary };
 };

@@ -1,27 +1,16 @@
 import { FC } from "react";
-import { StyleSheet, View, ViewProps } from "react-native";
 
-import { Text } from "@/components/Text";
+import { Text, TextProps } from "@/components/Text";
 import { Ingredient } from "@/models";
 
-export type RecipeIngredientAddListItemProps = ViewProps & {
+export type RecipeIngredientAddListItemProps = Omit<TextProps, "size"> & {
   item: Ingredient;
 };
 
 export const RecipeIngredientAddListItem: FC<
   RecipeIngredientAddListItemProps
-> = ({ style, item, ...props }) => {
+> = ({ item }) => {
   return (
-    <View {...props} style={[style, styles.container]}>
-      <Text text={`-  ${item.quantity}`} size="xs" />
-      <Text text={item.unit} size="xs" />
-      <Text text={item.name} size="xs" />
-    </View>
+    <Text text={`-  ${item.quantity} ${item.unit} ${item.name}`} size="xs" />
   );
 };
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: "row",
-    gap: 4,
-  },
-});

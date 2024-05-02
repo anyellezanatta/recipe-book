@@ -1,13 +1,13 @@
 import { StyleSheet, View } from "react-native";
 
-import { DebouncedInput } from "@/components/DebouncedInput";
 import { ImagePicker } from "@/components/ImagePicker";
+import { Input } from "@/components/Input";
 import { SegmentedControl } from "@/components/SegmentedControl";
 import { Text } from "@/components/Text";
 import { useRecipeAdd } from "@/features/recipe/hooks/useRecipeAdd";
 import { spacing } from "@/theme/spacing";
 
-export const RecipeHeaderAdd = () => {
+export const RecipeAdd = () => {
   const { setRecipeValue } = useRecipeAdd();
   const difficultyList = ["easy", "medium", "hard"];
   return (
@@ -18,7 +18,8 @@ export const RecipeHeaderAdd = () => {
       </View>
       <View>
         <Text text="Title" size="sm" />
-        <DebouncedInput
+        <Input
+          id="title"
           style={styles.textInput}
           placeholder="Title"
           onChangeValue={(value) => setRecipeValue!("title", value)}
@@ -26,7 +27,8 @@ export const RecipeHeaderAdd = () => {
       </View>
       <View>
         <Text text="Description" size="sm" />
-        <DebouncedInput
+        <Input
+          id="description"
           style={styles.textInputMultiline}
           placeholder="Description"
           multiline
@@ -46,7 +48,8 @@ export const RecipeHeaderAdd = () => {
       </View>
       <View>
         <Text text="Time" size="sm" />
-        <DebouncedInput
+        <Input
+          id="time"
           style={styles.textInput}
           placeholder="Time in minutes"
           keyboardType="numeric"
@@ -57,7 +60,8 @@ export const RecipeHeaderAdd = () => {
       </View>
       <View>
         <Text text="Yields" size="sm" />
-        <DebouncedInput
+        <Input
+          id="yields"
           style={styles.textInput}
           placeholder="Yields"
           keyboardType="numeric"

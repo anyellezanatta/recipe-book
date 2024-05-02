@@ -1,7 +1,6 @@
 export const Units = [
   "kg",
   "g",
-  "g",
   "ml",
   "l",
   "oz",
