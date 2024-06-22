@@ -4,6 +4,7 @@ import {
   type TextProps as RNTextProps,
   Text as RNText,
 } from "react-native";
+
 import { useAppTheme } from "@/hooks/useAppTheme";
 
 type Sizes = keyof typeof $sizeStyles;
